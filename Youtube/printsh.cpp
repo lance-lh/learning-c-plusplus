@@ -1,6 +1,13 @@
 #include <iostream>
 using namespace std;
+#include "log.h"
 
-void printsth(const char* msg) {
-	cout << msg << endl;
+void InitLog()
+{
+	Log("Initialized Log");
+}
+
+void Log(const char* msg)
+{
+	std::cout << msg << std::endl;
 }

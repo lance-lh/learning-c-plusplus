@@ -1,0 +1,11 @@
+﻿Build started 2018/11/27 10:21:06.
+     1>Project "D:\c++ files\Blog\Blog.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\c++ files\Blog\Debug\Blog.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\c++ files\Blog\Debug\Blog.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\c++ files\Blog\Debug\Blog.lib" /MACHINE:X86 Debug\a.obj
+         Debug\main.obj
+         Blog.vcxproj -> D:\c++ files\Blog\Debug\Blog.exe
+     1>Done Building Project "D:\c++ files\Blog\Blog.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.43

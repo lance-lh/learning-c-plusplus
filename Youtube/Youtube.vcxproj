@@ -19,12 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hello.cpp" />
-    <ClCompile Include="Math.cpp" />
-    <ClCompile Include="printsh.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="endofbrace.h" />
+    <ClCompile Include="Array.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4A58CBC5-85E2-48C3-B652-914D8A3EFF08}</ProjectGuid>
@@ -80,9 +75,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessToFile>false</PreprocessToFile>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
