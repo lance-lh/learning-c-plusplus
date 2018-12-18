@@ -2,11 +2,29 @@
 
 > NewProject 
 
-	It provides a recommended *Directory Structure* as follows:
+It provides a recommended `VS` *Directory Structure* as follows:
 
 ![](https://i.loli.net/2018/12/17/5c17a606d7d18.png)
 
 > Youtube
+***
+*Date: 2018-12-18*
+- [x] Strings.cpp
+
+Some good references here:
+> https://en.wikipedia.org/wiki/ASCII
+> http://www.cplusplus.com/reference/string/string/
+
+```
+string is an array of characters, letters, numbers, symbols
+string of text
+char pointer
+
+passing string to func,  void PrintString(const std::string& string)
+this is a reference meaning that it wouldn't get copied and const means we're not to modify it here
+
+strings are immutable in the sense that you can't just extend a string and make it bigger because this is a fixed alllocated block of memory if you wanna have a bigger string you need to perform a brand new allocation and delete the old string
+```
 
 ***
 *Date: 2018-12-17*
