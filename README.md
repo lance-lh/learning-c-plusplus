@@ -1,12 +1,17 @@
-### learning C++
+**learning C++**  
+***
 
-> NewProject 
+
+[TOC]
+
+
+## NewProject 
 
 It provides a recommended `VS` *Directory Structure* as follows:
 
 ![](https://i.loli.net/2018/12/17/5c17a606d7d18.png)
 
-> Youtube
+## Youtube
 
 course list
 
@@ -43,7 +48,7 @@ course list
 - [x] "Arrays in C++" 
 - [x] "How Strings Work in C++ (and how to use them)" 
 - [x] "String Literals in C++" 
-- [ ] "CONST in C++" 
+- [x] "CONST in C++" 
 - [ ] "The Mutable Keyword in C++" 
 - [ ] "Member Initializer Lists in C++ (Constructor Initializer List)" 
 - [ ] "Ternary Operators in C++ (Conditional Assignment)" 
@@ -84,14 +89,12 @@ course list
 - [ ] "Precompiled Headers in C++" 
 
 ***
-*Date: 2018-12-20*  
+### Date: 2018-12-20  
 
-- [x] String_literals.cpp  
+#### String_literals 
 
 * string literals are a series of character in between two double quotes.  
-
 * string literals are stored in a read-only section of memory.  
-
 * There are two ways to extend your strings.   
 1. `std::string name0 = std::string("Cherno") + "hello";  // use constructor`
 2. `std::string name5 = "Cherno"s + "hello"; // s means an operator function`
@@ -112,12 +115,96 @@ const char32_t* name4 = U"Cherno"; // 4 bytes per character, utf-32
 * string length  
 ```c++
 #include<stdlib.h>
-std::cout << string_name << std::endl;
+std::cout << strlen(string_name) << std::endl;
 ```
+------
+
+#### Const
+> `const` is like a promise (keep constant), you can break your promise  
+
+> For people having trouble remembering the order in which `const` keyword is to be used, here's a quick tip.
+You have to *read it backward*, like the compiler does. For instance :
+`const int * A;` -> "A is a pointer to an int that is constant."
+(or, depending on how you prefer to write it)
+`int const* A;` -> "A is a pointer to a const int"
+but both are the same as explained in the video.
+`int * const A;` -> "A is a const pointer to an int."
+`const int* const A;` -> "A is a const pointer to an int that is constant".﻿
+
+```c++
+	const int MAX_AGE = 90; // the compiler treat it as a read-only constant
+
+	//1st case
+	int* a = new int;  // a is a pointer to an int
+	*a = 2; // change the content
+	//a = &MAX_AGE; // ERROR: a value of type "const int *" cannot be assigned to an entity of type "int *"
+	a = (int*)&MAX_AGE;  // change the memory it points to
+	std::cout << *a << std::endl;
+
+	//2nd case 
+	const int* a1 = new int;  // a1 is a pointer to an int that is constant
+	*a1 = 2; 	// cannot modify the content	
+	a1 = (int*)&MAX_AGE; 
+	std::cout << *a1 << std::endl;
+
+	//3rd case, equivalent to 2nd case
+	int const* a2 = new int;  // a2 is a pointer to a constant int
+	*a2 = 2; 	// cannot modify the content	
+	a2 = (int*)&MAX_AGE;
+	std::cout << *a2 << std::endl;
+
+	// brief summary, if variable name is right next to pointer symbol *, which indicates that the content cannot be modified.
+
+	//4th case
+	int* const a3 = new int;  // a3 is a constant pointer to an int
+	*a3 = 2; 	
+	a3 = (int*)&MAX_AGE;  // cannot reassign the actual pointer itself to point to something else
+	std::cout << *a3 << std::endl;
+
+	//5th case
+	const int* const a4 = new int;  // a4 is a constant pointer to an int that is constant
+	*a4 = 2;  // cannot modify the content
+	a4 = (int*)&MAX_AGE;  // cannot reassign the actual pointer itself to point to something else
+	std::cout << *a4 << std::endl;
+```
+**There are four usages of `const` introduced in videos***  
+
+1. cannot modify the content  
+`const int* a = new int;` = `int const* a = new int;`
+2. cannot reassign it to point to something else  
+`int* const a = new int;`  
+3. cannot modify the content, either reassign it to sth else  
+`const int* const a = new int`  
+4. `const` after a class method  
+```
+// 3rd usage of const
+class Entity
+{
+private:
+	int m_X, m_Y;  //int *m_X, *m_Y;
+	mutable int var; // with mutable you can change it
+public:
+	int GetX() const // const after a method, it only works in a class
+		// it means you cannot modify class member variables (line 8)
+		// it is just kind of read-only method, it's just gonna read data from the class
+	{
+		var = 2; // that's ok because var is mutable
+		m_X = 2; // it's not gonna work
+		return m_X;
+	}
+
+	void SetX(int x)
+	{
+		m_X = x;
+	}
+};
+```
+* attention to keyword `mutable`
 
 ***
-*Date: 2018-12-19*    
-*Generate course list*  
+### Date: 2018-12-19    
+
+#### Generate course list 
 
 * using python framework, since it is convenient to use crawler
 * software Regester to pre-process
@@ -147,8 +234,9 @@ file.close()
 ```
 
 ***
-*Date: 2018-12-18*
-- [x] Strings.cpp
+### Date: 2018-12-18
+
+#### Strings
 
 Some good references here:
 > https://en.wikipedia.org/wiki/ASCII
@@ -167,26 +255,37 @@ strings are immutable in the sense that you can't just extend a string and make 
 ```
 
 ***
-*Date: 2018-12-17*
+### Date: 2018-12-17
 
-- [ ] Array.cpp
-- [ ] Visibility.cpp
-- [ ] Pure_virtual_func2.cpp
+#### Array
+
+#### Visibility
+
+#### Pure_virtual_func2
+
+#### SRO
+
 - [ ] SRO1.cpp
-- [ ] SRO2.cpp
-- [ ] SRO3.cpp
-- [ ] SRO4.cpp
-- [ ] Pure_virtual_func.cpp
-- [ ] Virtual_func.cpp
-- [ ] Inheritance.cpp
-***
-*Date: 2018-12-16*
 
-- [ ] Constructor.cpp
-- [ ] Log1.cpp
-- [ ] Enum.cpp
+- [ ] SRO2.cpp
+
+- [ ] SRO3.cpp
+
+- [ ] SRO4.cpp
+
+#### Pure_virtual_func
+
+####  Virtual_func
+
+####  Inheritance
 ***
-*Date: 2018-12-15*
+### Date: 2018-12-16
+
+####  Constructor
+#### Log1
+####  Enum
+***
+### Date: 2018-12-15
 
 - [ ] Main14.cpp
 - [ ] Main13.cpp
@@ -195,13 +294,13 @@ strings are immutable in the sense that you can't just extend a string and make 
 - [ ] Main11.cpp
 - [ ] Main10.cpp
 ***
-*Date: 2018-12-14*
+### Date: 2018-12-14
 
 - [ ] Main9.cpp
 - [ ] Main7.cpp
 - [ ] Main8.cpp
 ***
-*Date: 2018-12-13*
+### Date: 2018-12-13
 
 - [ ] Main6.cpp
 - [ ] Main5.cpp
@@ -214,7 +313,7 @@ strings are immutable in the sense that you can't just extend a string and make 
 - [ ] log.h
 - [ ] func1.cpp
 ***
-*Date: 2018-12-12*
+### Date: 2018-12-12
 - [ ] variables.cpp
 - [ ] size_range.cpp
 - [ ] Mathforfunc.cpp
