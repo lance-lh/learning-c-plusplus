@@ -11,9 +11,9 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 ![](https://i.loli.net/2018/12/17/5c17a606d7d18.png)
 
-## Youtube
-
-course list
+## Youtube  
+<details>
+<summary>course list</summary>  
 
 - [x] "Welcome to C++" 
 - [x] "How to Setup C++ on Windows" 
@@ -86,7 +86,8 @@ course list
 - [ ] "Casting in C++" 
 - [ ] "Conditional and Action Breakpoints in C++" 
 - [ ] "Safety in modern C++ and how to teach it" 
-- [ ] "Precompiled Headers in C++" 
+- [ ] "Precompiled Headers in C++"   
+</details> 
 
 ***
 ### Date: 2018-12-20  
