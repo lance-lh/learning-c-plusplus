@@ -42,7 +42,7 @@ course list
 - [x] "Visibility in C++" 
 - [x] "Arrays in C++" 
 - [x] "How Strings Work in C++ (and how to use them)" 
-- [ ] "String Literals in C++" 
+- [x] "String Literals in C++" 
 - [ ] "CONST in C++" 
 - [ ] "The Mutable Keyword in C++" 
 - [ ] "Member Initializer Lists in C++ (Constructor Initializer List)" 
@@ -82,6 +82,38 @@ course list
 - [ ] "Conditional and Action Breakpoints in C++" 
 - [ ] "Safety in modern C++ and how to teach it" 
 - [ ] "Precompiled Headers in C++" 
+
+***
+*Date: 2018-12-20*  
+
+- [x] String_literals.cpp  
+
+* string literals are a series of character in between two double quotes.  
+
+* string literals are stored in a read-only section of memory.  
+
+* There are two ways to extend your strings.   
+1. `std::string name0 = std::string("Cherno") + "hello";  // use constructor`
+2. `std::string name5 = "Cherno"s + "hello"; // s means an operator function`
+
+* multiple line style  
+```c++
+const char* example = R"(line1
+Line2
+Line3)";  // R to achieve multiple lines
+```
+* String Class instantiations  
+```c++
+const char* name = "Cherno";  // one byte per character, utf-8
+const wchar_t* name2 = L"Cherno";  // two bytes per character on Windows
+const char16_t* name3 = u"Cherno"; // two bytes per character, utf-16
+const char32_t* name4 = U"Cherno"; // 4 bytes per character, utf-32
+```
+* string length  
+```c++
+#include<stdlib.h>
+std::cout << string_name << std::endl;
+```
 
 ***
 *Date: 2018-12-19*    
