@@ -5,6 +5,7 @@
 - [Youtube](#youtube)
     - [Date: 2018-12-21](#2018-12-21)
         - [mutable](#mutable)
+        - [constructor initializer list](#constructor-initializer-list)
     - [Date: 2018-12-20](#2018-12-20)
         - [String literals](#string_literals)
         - [Const](#const)
@@ -74,7 +75,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "String Literals in C++" 
 - [x] "CONST in C++" 
 - [x] "The Mutable Keyword in C++" 
-- [ ] "Member Initializer Lists in C++ (Constructor Initializer List)" 
+- [x] "Member Initializer Lists in C++ (Constructor Initializer List)" 
 - [ ] "Ternary Operators in C++ (Conditional Assignment)" 
 - [ ] "How to CREATE/INSTANTIATE OBJECTS in C++" 
 - [ ] "The NEW Keyword in C++" 
@@ -135,6 +136,104 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 More references can be found [here](https://blog.csdn.net/u012209626/article/details/47864727)
 
+#### constructor initializer list
+> it's a way for us to initialize our class member functions in the Constructors
+
+* First case
+```c++
+class Example
+{
+public:
+	Example()
+	{
+		std::cout << "Created Entity!" << std::endl;
+	}
+
+	Example(int x)
+	{
+		std::cout << "Created Entity with " << x << "!" << std::endl;
+	}
+};
+
+class Entity
+{
+private:
+	std::string m_Name;
+	Example m_Example;  
+public:
+	Entity()  // default constructor
+	{
+		m_Name = std::string("Unknown");
+		m_Example = Example(8); 
+	}
+
+
+	Entity(const std::string& name)
+	{
+		m_Name = name;
+	}
+	const std::string& GetName() const { return m_Name; }
+};
+
+int main()
+{
+	Entity e0;
+	std::cin.get();
+}
+```
+* Output:  
+```c++
+Created Entity!
+Created Entity with 8!
+```
+
+* Second case
+```c++
+class Example
+{
+public:
+	Example()
+	{
+		std::cout << "Created Entity!" << std::endl;
+	}
+
+	Example(int x)
+	{
+		std::cout << "Created Entity with " << x << "!" << std::endl;
+	}
+};
+
+class Entity
+{
+private:
+	std::string m_Name;
+	Example m_Example;  
+public:
+	Entity()  // default constructor
+        : m_Example(Example(8))
+	{
+		m_Name = std::string("Unknown");
+	}
+
+
+	Entity(const std::string& name)
+	{
+		m_Name = name;
+	}
+	const std::string& GetName() const { return m_Name; }
+};
+
+int main()
+{
+	Entity e0;
+	std::cin.get();
+}
+```
+* Output:  
+```c++
+Created Entity with 8!
+```
+***
 
 ### 2018-12-20  
 #### String_literals   
@@ -246,6 +345,7 @@ public:
 ```
 * attention to keyword `mutable`
 
+***
 
 ### 2018-12-19    
 #### Generate course list   
@@ -276,6 +376,7 @@ file=open('D:/data.txt','w')
 file.write(str(result1))
 file.close()
 ```
+***
 
 ### 2018-12-18  
 #### Strings  
@@ -295,7 +396,7 @@ this is a reference meaning that it wouldn't get copied and const means we're no
 
 strings are immutable in the sense that you can't just extend a string and make it bigger because this is a fixed alllocated block of memory if you wanna have a bigger string you need to perform a brand new allocation and delete the old string
 ```
-
+***
 
 ### 2018-12-17  
 #### Array  
@@ -311,10 +412,14 @@ strings are immutable in the sense that you can't just extend a string and make 
 ####  Virtual_func  
 ####  Inheritance  
 
+***
+
 ### 2018-12-16  
 ####  Constructor  
 #### Log1  
 ####  Enum  
+
+***
 
 ### 2018-12-15  
 - [ ] Main14.cpp
@@ -324,10 +429,14 @@ strings are immutable in the sense that you can't just extend a string and make 
 - [ ] Main11.cpp
 - [ ] Main10.cpp
 
+***
+
 ### 2018-12-14  
 - [ ] Main9.cpp
 - [ ] Main7.cpp
 - [ ] Main8.cpp
+
+***
 
 ### 2018-12-13  
 - [ ] Main6.cpp
@@ -340,6 +449,8 @@ strings are immutable in the sense that you can't just extend a string and make 
 - [ ] Main.cpp
 - [ ] log.h
 - [ ] func1.cpp
+
+***
 
 ### 2018-12-12  
 - [ ] variables.cpp
