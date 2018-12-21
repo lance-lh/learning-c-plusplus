@@ -3,31 +3,31 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
-    - [Date: 2018-12-21](#Date20181221)
+    - [Date: 2018-12-21](#2018-12-21)
         - [mutable](#mutable)
-    - [Date: 2018-12-20](#Date20181220)
-        - [String literals](#stringliterals)
+    - [Date: 2018-12-20](#2018-12-20)
+        - [String literals](#string_literals)
         - [Const](#const)
-    - [Date: 2018-12-19](#Date20181219)
+    - [Date: 2018-12-19](#2018-12-19)
         - [Generate course list](#generate-course-list)
-    - [Date: 2018-12-18](#Date20181218)
-        ​    - [Strings](#string)
-    - [Date: 2018-12-17](#Date20181217)
+    - [Date: 2018-12-18](#2018-12-18)
+        - [Strings](#string)
+    - [Date: 2018-12-17](#2018-12-17)
         - [Array](#array)
         - [Visibility](#visibility)
-        - [Pure virtual func2](#purevirtualfunc2)
+        - [Pure virtual func2](#pure_virtual_func2)
         - [SRO](#sro)
-        - [Pure virtual func](#purevirtualfunc)
-        - [Virtual_func](#virtualfunc)
+        - [Pure virtual func](#pure_virtual_func)
+        - [Virtual_func](#virtual_func)
         - [Inheritance](#inheritance)
-    - [Date: 2018-12-16](#Date20181216)
+    - [Date: 2018-12-16](#2018-12-16)
         - [Constructor](#constructor)
         - [Log1](#log1)
         - [Enum](#enum)
-    - [Date: 2018-12-15](#Date20181215)
-    - [Date: 2018-12-14](#Date20181214)
-    - [Date: 2018-12-13](#Date20181213)
-    - [Date: 2018-12-12](#Date20181212)
+    - [Date: 2018-12-15](#2018-12-15)
+    - [Date: 2018-12-14](#2018-12-14)
+    - [Date: 2018-12-13](#2018-12-13)
+    - [Date: 2018-12-12](#2018-12-12)
 
 ## NewProject 
 
@@ -115,12 +115,8 @@ It provides a recommended `VS` *Directory Structure* as follows:
 </details> 
 
 
-### Date: 2018-12-21
-
-<details>
-<summary>mutable </summary>
-
-#### mutable
+### 2018-12-21  
+#### mutable  
 
 > https://en.cppreference.com/w/cpp/keyword/mutable  
 
@@ -139,14 +135,9 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 More references can be found [here](https://blog.csdn.net/u012209626/article/details/47864727)
 
-</details>
 
-### Date: 2018-12-20  
-
-<details>
-<summary> string literal and const</summary>
-
-#### String_literals 
+### 2018-12-20  
+#### String_literals   
 
 * string literals are a series of character in between two double quotes.  
 * string literals are stored in a read-only section of memory.  
@@ -255,13 +246,9 @@ public:
 ```
 * attention to keyword `mutable`
 
-</details>
 
-### Date: 2018-12-19    
-<details>
-<summary>Generate course list </summary>
-
-#### Generate course list 
+### 2018-12-19    
+#### Generate course list   
 
 * using python framework, since it is convenient to use crawler
 * software Regester to pre-process
@@ -290,13 +277,8 @@ file.write(str(result1))
 file.close()
 ```
 
-</details>
-
-### Date: 2018-12-18
-<details>
-<summary>string</summary> 
-
-#### Strings
+### 2018-12-18  
+#### Strings  
 
 Some good references here:
 > https://en.wikipedia.org/wiki/ASCII
@@ -314,51 +296,27 @@ this is a reference meaning that it wouldn't get copied and const means we're no
 strings are immutable in the sense that you can't just extend a string and make it bigger because this is a fixed alllocated block of memory if you wanna have a bigger string you need to perform a brand new allocation and delete the old string
 ```
 
-</details>
 
-### Date: 2018-12-17
-<details>
-<summary>contents</summary>
-
-#### Array
-
-#### Visibility
-
-#### Pure_virtual_func2
-
-#### SRO
-
+### 2018-12-17  
+#### Array  
+#### Visibility  
+#### Pure_virtual_func2  
+#### SRO  
 - [ ] SRO1.cpp
-
 - [ ] SRO2.cpp
-
 - [ ] SRO3.cpp
-
 - [ ] SRO4.cpp
 
-#### Pure_virtual_func
+#### Pure_virtual_func  
+####  Virtual_func  
+####  Inheritance  
 
-####  Virtual_func
+### 2018-12-16  
+####  Constructor  
+#### Log1  
+####  Enum  
 
-####  Inheritance
-</details>
-
-
-### Date: 2018-12-16
-<details>
-<summary>contents</summary>
-
-####  Constructor
-#### Log1
-####  Enum
-
-</details>
-
-
-### Date: 2018-12-15
-<details>
-<summary>contents</summary>
-
+### 2018-12-15  
 - [ ] Main14.cpp
 - [ ] Main13.cpp
 - [ ] Staticcpp.cpp
@@ -366,23 +324,12 @@ strings are immutable in the sense that you can't just extend a string and make 
 - [ ] Main11.cpp
 - [ ] Main10.cpp
 
-</details>
-
-
-### Date: 2018-12-14
-<details>
-<summary>basic c++ concepts</summary>
-
+### 2018-12-14  
 - [ ] Main9.cpp
 - [ ] Main7.cpp
 - [ ] Main8.cpp
 
-</details>
-
-### Date: 2018-12-13
-<details>  
-<summary>basic c++ concepts</summary>
-
+### 2018-12-13  
 - [ ] Main6.cpp
 - [ ] Main5.cpp
 - [ ] Main4.cpp
@@ -394,12 +341,7 @@ strings are immutable in the sense that you can't just extend a string and make 
 - [ ] log.h
 - [ ] func1.cpp
 
-</details>
-
-### Date: 2018-12-12
-<details>  
-<summary>basic c++ concepts</summary>
-
+### 2018-12-12  
 - [ ] variables.cpp
 - [ ] size_range.cpp
 - [ ] Mathforfunc.cpp
@@ -412,5 +354,3 @@ strings are immutable in the sense that you can't just extend a string and make 
 - [ ] func_with_multiple_paras.cpp
 - [ ] func_with_para.cpp
 - [ ] func_test.cpp
-
-</details>
