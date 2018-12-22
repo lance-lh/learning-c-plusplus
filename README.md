@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2018-12-22](#2018-12-22)
+        - [ternary operator](#ternary-operator)
     - [Date: 2018-12-21](#2018-12-21)
         - [mutable](#mutable)
         - [constructor initializer list](#constructor-initializer-list)
@@ -76,7 +78,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "CONST in C++" 
 - [x] "The Mutable Keyword in C++" 
 - [x] "Member Initializer Lists in C++ (Constructor Initializer List)" 
-- [ ] "Ternary Operators in C++ (Conditional Assignment)" 
+- [x] "Ternary Operators in C++ (Conditional Assignment)" 
 - [ ] "How to CREATE/INSTANTIATE OBJECTS in C++" 
 - [ ] "The NEW Keyword in C++" 
 - [ ] "Implicit Conversion and the Explicit Keyword in C++" 
@@ -115,7 +117,35 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2018-12-22  
+#### ternary operator  
+In fact, it is *conditional assignment.*
+`eg.1`  
 
+```c++
+if (s_Level > 5)
+		s_Speed = 10;
+	else
+		s_Speed = 5;
+		
+s_Speed = s_Level > 5 ? 10 : 5;
+```
+
+`eg.2`  
+
+```c++
+if (s_Level > 5)
+	if (s_Level > 10)
+		s_Speed = 15;
+	else
+		s_Speed = 10;
+else 
+	s_Speed = 5;
+
+s_Speed = s_Level > 5 ? s_Level > 10 ? 15 : 10 : 5;
+```
+
+***
 ### 2018-12-21  
 #### mutable  
 
