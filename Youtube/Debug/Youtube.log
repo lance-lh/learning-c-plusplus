@@ -1,4 +1,4 @@
-﻿Build started 2018/12/23 14:52:17.
+﻿Build started 2018/12/23 15:10:23.
      1>Project "D:\c++ files\Youtube\Youtube.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          E:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Instantiate_objects.cpp
@@ -10,4 +10,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.15
+Time Elapsed 00:00:01.78

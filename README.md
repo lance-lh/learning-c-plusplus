@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2018-12-23](#2018-12-23)
+        - [Create objects](#create-objects)
     - [Date: 2018-12-22](#2018-12-22)
         - [ternary operator](#ternary-operator)
     - [Date: 2018-12-21](#2018-12-21)
@@ -79,7 +81,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "The Mutable Keyword in C++" 
 - [x] "Member Initializer Lists in C++ (Constructor Initializer List)" 
 - [x] "Ternary Operators in C++ (Conditional Assignment)" 
-- [ ] "How to CREATE/INSTANTIATE OBJECTS in C++" 
+- [x] "How to CREATE/INSTANTIATE OBJECTS in C++" 
 - [ ] "The NEW Keyword in C++" 
 - [ ] "Implicit Conversion and the Explicit Keyword in C++" 
 - [ ] "OPERATORS and OPERATOR OVERLOADING in C++" 
@@ -117,6 +119,71 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2018-12-23  
+### Create objects  
+> we basically have two choices here and the difference between the choices is where the memory comes from which memory were actually going to be creating our object in
+​        when we create an object in C++, it needs to occupy some memory even if we write a class that is completely empty, no class members or nothing like that it has to occupy at least one byte of memory
+​         stack objects for example, their lifetime is actually controlled by the scope that they declared and as soon as that variable goes out of scope, that's it the memory is free because when that scope ends the stack pops and anything that scope frame in that stack frame that gets freed
+​         once you allocated an object in that heap, it's up to you to determine when to free that block of memory
+
+* create class  
+```c++
+class Entity
+{
+private:
+	String m_Name;
+public:
+	Entity() 
+		: m_Name("Unkown")  //constructor 
+	{
+	}
+	Entity(const String& name) 
+		: m_Name(name) 
+	{
+	}
+
+	const String& GetName() const 
+	{ 
+		return m_Name; 
+	}
+};
+```
+
+* objects created on the stack  
+```c++
+int main()
+{
+	Entity* e;
+	{  // use curly brace to create a scope
+		Entity entity("Cherno");
+		e = &entity;  // when the code runs to the next line of anchor1, content of e is freed because of scope 
+		std::cout << entity.GetName() << std::endl;
+	}  // anchor1
+	std::cin.get();
+}
+```
+
+* objects created on the heap  
+```c++
+int main()
+{
+	Entity* e;
+	{  // use curly brace to create a scope
+		Entity* entity = new Entity("Cherno"); 
+		e = entity; // when the code runs to the next line of anchor2, content of e is freed because of heap memory is freed
+		std::cout << entity->GetName() << std::endl; 
+	}  // anchor1
+	
+	std::cin.get();
+	delete e; // anchor2
+}
+```
+
+* `Entity* entity = new Entity("Cherno");` we allocate memory on the `heap`, call the `constructor` and this new `entity` actually returns an entity pointer it returns the location on the `heap` where this entity has actually been allocated  
+
+* `std::cout << entity->GetName() << std::endl;` since `entity` is a `Entity pointer`, you should dereference first, `(*entity).GetName()`
+
+***
 ### 2018-12-22  
 #### ternary operator  
 In fact, it is *conditional assignment.*

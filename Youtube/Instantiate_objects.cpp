@@ -36,9 +36,15 @@ int main()
 	Entity* e;
 	{  // use curly brace to create a scope
 		//Entity entity;  // calling the default constructor
-		Entity entity("Cherno");
-		e = &entity;  // when the code runs to the next line of anchor1, content of e is freed because of scope 
-		std::cout << entity.GetName() << std::endl;
+		//Entity entity("Cherno");
+		Entity* entity = new Entity("Cherno"); // we allocate memory on the heap, call the constructor and this new entity actually returns an entity pointer it returns the location on the heap where this entity has actually been allocated
+		//e = &entity;  // when the code runs to the next line of anchor1, content of e is freed because of scope 
+		e = entity; // when the code runs to the next line of anchor2, content of e is freed because of heap memory is freed
+		//std::cout << entity.GetName() << std::endl;
+		std::cout << entity->GetName() << std::endl;  // since entity is a Entity pointer, you should dereference first, (*entity).GetName()
+		//delete entity; // free heap memory
 	}  // anchor1
+	
 	std::cin.get();
+	delete e; // anchor2
 }
