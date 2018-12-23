@@ -6,7 +6,7 @@
     - [Date: 2018-12-23](#2018-12-23)
         - [Create objects](#create-objects)
         - [new and delete](#new-and-delete)
-        - [implicit convertion  and explicit](#implicit-convertion -and-explicit)
+        - [implicit conversion and explicit](#implicit-conversion-and-explicit)
     - [Date: 2018-12-22](#2018-12-22)
         - [ternary operator](#ternary-operator)
     - [Date: 2018-12-21](#2018-12-21)
@@ -201,7 +201,7 @@ delete[] b; // when free the array memory created by new square brackets
 std::cin.get();
 ```
 
-#### implicit convertion  and explicit  
+#### implicit conversion and explicit  
 * first case  
 ```c++
 X x;
@@ -237,7 +237,7 @@ This link can be found [here](https://stackoverflow.com/questions/7099957/implic
 ***
 ### 2018-12-22  
 #### ternary operator  
-In fact, it is *conditional assignment.*
+In fact, it is *conditional assignment.*  
 `eg.1`  
 
 ```c++
