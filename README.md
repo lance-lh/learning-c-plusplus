@@ -5,6 +5,7 @@
 - [Youtube](#youtube)
     - [Date: 2018-12-23](#2018-12-23)
         - [Create objects](#create-objects)
+        - [new and delete](#new-and-delete)
     - [Date: 2018-12-22](#2018-12-22)
         - [ternary operator](#ternary-operator)
     - [Date: 2018-12-21](#2018-12-21)
@@ -82,7 +83,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Member Initializer Lists in C++ (Constructor Initializer List)" 
 - [x] "Ternary Operators in C++ (Conditional Assignment)" 
 - [x] "How to CREATE/INSTANTIATE OBJECTS in C++" 
-- [ ] "The NEW Keyword in C++" 
+- [x] "The NEW Keyword in C++" 
 - [ ] "Implicit Conversion and the Explicit Keyword in C++" 
 - [ ] "OPERATORS and OPERATOR OVERLOADING in C++" 
 - [ ] "The &quot;this&quot; keyword in C++" 
@@ -120,7 +121,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 </details> 
 
 ### 2018-12-23  
-### Create objects  
+#### Create objects  
 > we basically have two choices here and the difference between the choices is where the memory comes from which memory were actually going to be creating our object in
 ​        when we create an object in C++, it needs to occupy some memory even if we write a class that is completely empty, no class members or nothing like that it has to occupy at least one byte of memory
 ​         stack objects for example, their lifetime is actually controlled by the scope that they declared and as soon as that variable goes out of scope, that's it the memory is free because when that scope ends the stack pops and anything that scope frame in that stack frame that gets freed
@@ -182,6 +183,22 @@ int main()
 * `Entity* entity = new Entity("Cherno");` we allocate memory on the `heap`, call the `constructor` and this new `entity` actually returns an entity pointer it returns the location on the `heap` where this entity has actually been allocated  
 
 * `std::cout << entity->GetName() << std::endl;` since `entity` is a `Entity pointer`, you should dereference first, `(*entity).GetName()`
+
+#### new and delete  
+> The main purpose of `new` is to allocate memory on the `heap` specially
+> 
+> The `new` expression attempts to **allocate storage** and then attempts to **construct and initialize** either a single unnamed object, or an unnamed array of objects in the allocated storage. The new-expression **returns a prvalue pointer** to the constructed object or, if an array of objects was constructed, a pointer to the initial element of the array. [link](https://en.cppreference.com/w/cpp/language/new)
+
+```c++
+int a = 2;
+int* b = new int[50]; // remember new returns a pointer, 200bytes
+
+Entity* e = new Entity(); // not only allocate the memory, but alse calls the constructor, kind of like (Entity*)malloc(sizeof(Entity) in C, but the latter one does not call the constructor
+	 
+delete e; // free() in C, but delete also calls the destructor
+delete[] b; // when free the array memory created by new square brackets
+std::cin.get();
+```
 
 ***
 ### 2018-12-22  
