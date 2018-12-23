@@ -6,6 +6,7 @@
     - [Date: 2018-12-23](#2018-12-23)
         - [Create objects](#create-objects)
         - [new and delete](#new-and-delete)
+        - [implicit convertion  and explicit](#implicit-convertion -and-explicit)
     - [Date: 2018-12-22](#2018-12-22)
         - [ternary operator](#ternary-operator)
     - [Date: 2018-12-21](#2018-12-21)
@@ -84,7 +85,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Ternary Operators in C++ (Conditional Assignment)" 
 - [x] "How to CREATE/INSTANTIATE OBJECTS in C++" 
 - [x] "The NEW Keyword in C++" 
-- [ ] "Implicit Conversion and the Explicit Keyword in C++" 
+- [x] "Implicit Conversion and the Explicit Keyword in C++" 
 - [ ] "OPERATORS and OPERATOR OVERLOADING in C++" 
 - [ ] "The &quot;this&quot; keyword in C++" 
 - [ ] "Object Lifetime in C++ (Stack/Scope Lifetimes)" 
@@ -199,6 +200,39 @@ delete e; // free() in C, but delete also calls the destructor
 delete[] b; // when free the array memory created by new square brackets
 std::cin.get();
 ```
+
+#### implicit convertion  and explicit  
+* first case  
+```c++
+X x;
+Y y(x) //explicit conversion
+```
+* second case  
+```c++
+X x;
+Y y = x; //implicit conversion
+```
+> one uses a Y's constructor and one uses the assignment operator though.
+
+> Nope. In the second case it's not an assignment, it's an initialization, the assignment operator (`operator=`) is never called; instead, a non-`explicit` one-parameter constructor (that accepts the type  X as a parameter) is called.
+
+> The difference between initialization and assignment is important: in the first case, a new object is being created, and it starts its life with the value that it is being initialized with (hence why a constructor is called), while assignment happens when an object is assigned (~copied) to an object that already exists and already is in a definite state.
+
+> Anyway, the two forms of initialization that you wrote differ in the fact that in the first case you are explicitly calling a constructor, and thus any constructor is acceptable; in the second case, you're calling a constructor implicitly, since you're not using the "classical" constructor syntax, but the initialization syntax.
+
+> In this case, only one-parameter constructors not marked with `explicit` are acceptable. Such constructors are called by some people "converting" constructors, because they are involved in implicit conversions.
+
+> As specified [in this other answer](https://stackoverflow.com/questions/121162/what-does-the-explicit-keyword-mean/121163#121163), any constructor not marked as `explicit` can take part in an implicit conversion for e.g. converting an object passed to a function to the type expected by such function. Actually, you may say that it's what happens in your second example: you want to initialize (=create with a value copied from elsewhere) `y` with `x`, but `x` first has to be converted to type `Y`, which is done with the implicit constructor.
+
+> This kind of implicit conversion is often desirable: think for example to a string class that has a converting (i.e. non-`explicit`) constructor from a `const char *`: any function that receives a `string` parameter can also be called with a "normal" C-string: because of the converting constructor the caller will use C-strings, the callee will receive its `string` object.
+
+> Still, in some cases one-parameters constructors may not be appropriate for conversion: usually this happens when their only parameter is not conceptually "converted" to the type of the object being created, but it is just a parameter for the construction; think for example about a file stream object: probably it will have a constructor that accepts the name of the file to open, but it makes no sense to say that such string is "converted" to a stream that works on that file.
+
+> You can also find some more complex scenarios where these implicit conversions can completely mess-up the behavior that the programmer expects from overload resolution; examples of this can be found in the answers below the one I linked above.
+
+> More simply, it can also happen that some constructors may be very heavyweight, so the class designer may want to make sure that they are invoked explicitly. In these cases, the constructor is marked as `explicit`, so it can be used only when called "explicitly as a constructor" and doesn't take part in implicit conversions.
+
+This link can be found [here](https://stackoverflow.com/questions/7099957/implicit-vs-explicit-conversion)
 
 ***
 ### 2018-12-22  
