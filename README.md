@@ -5,6 +5,7 @@
 - [Youtube](#youtube)
     - [Date: 2018-12-24](#2018-12-24)
         - [Operators and operator overloading](#Operators-and-operator-overloading)
+        - [this](#this)
     - [Date: 2018-12-23](#2018-12-23)
         - [Create objects](#create-objects)
         - [new and delete](#new-and-delete)
@@ -89,7 +90,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "The NEW Keyword in C++" 
 - [x] "Implicit Conversion and the Explicit Keyword in C++" 
 - [x] "OPERATORS and OPERATOR OVERLOADING in C++" 
-- [ ] "The &quot;this&quot; keyword in C++" 
+- [x] "The &quot;this&quot; keyword in C++" 
 - [ ] "Object Lifetime in C++ (Stack/Scope Lifetimes)" 
 - [ ] "SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr)" 
 - [ ] "Copying and Copy Constructors in C++" 
@@ -222,7 +223,116 @@ std::cout << result2 << std::endl;
 3. operand types are `std::ostream << Vector2`  
 4. we can't do this because there is no `overload` for this operator which takes in an output stream which is what `cout` is and then an actual `Vector2` but we can add that  
 
-Besides, here is a detailed explanation of [C++ Overloading (Operator and Function)](https://www.tutorialspoint.com/cplusplus/cpp_overloading.htm)
+Besides, here is a detailed explanation of [C++ Overloading (Operator and Function)](https://www.tutorialspoint.com/cplusplus/cpp_overloading.htm)  
+> C++ allows you to specify more than one definition for a **function** name or an **operator** in the same scope, which is called **function overloading** and **operator overloading** respectively.
+
+> An overloaded declaration is a declaration that is declared with the same name as a previously declared declaration in the same scope, except that both declarations have different arguments and obviously different definition (implementation).
+
+> When you call an overloaded **function** or **operator**, the compiler determines the most appropriate definition to use, by comparing the argument types you have used to call the function or operator with the parameter types specified in the definitions. The process of selecting the most appropriate overloaded function or operator is called **overload resolution**.  
+
+> **Function Overloading**  
+
+> You can have multiple definitions for the same function name in the same scope. The definition of the function must differ from each other by the types and/or the number of arguments in the argument list. You cannot overload function declarations that differ only by return type.  
+>
+> **Operators Overloading**  
+>
+> You can redefine or overload most of the built-in operators available in C++. Thus, a programmer can use operators with user-defined types as well.
+>
+> Overloaded operators are functions with special names: the keyword "operator" followed by the symbol for the operator being defined. Like any other function, an overloaded operator has a return type and a parameter list.
+>
+> ```c++
+> Box operator+(const Box&);
+> ```
+>
+> declares the addition operator that can be used to **add** two Box objects and returns final Box object. Most overloaded operators may be defined as ordinary non-member functions or as class member functions. In case we define above function as non-member function of a class then we would have to pass two arguments for each operand as follows : 
+>
+> ```c++
+> Box operator+(const Box&, const Box&);
+> ```
+
+#### this  
+- Video  
+> `this` is only accessible to us through a `member function`, `member function` meaning a function that belongs to a `class` so a `method` and inside a `method` we can reference `this` and what `this` is is a `pointer` to the current `object instance` that the `method` belongs to
+> 
+> we first need to `instantiate` an `object` and then call the `method` so the `method` has to be called with a valid `object` and the `this` keyword is a `pointer` to that object   
+```c++
+class Entity
+{
+public:
+	int x, y;
+
+	Entity(int x, int y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+
+	int GetX() const  // we are not allowed to modify the class
+	{
+		const Entity* e = this;  // so this has to be const type
+		return x;
+	}
+};
+
+int  main()
+{
+	Entity e;
+	std::cin.get();
+}
+```
+
+- [C++ this Pointer](https://www.tutorialspoint.com/cplusplus/cpp_this_pointer.htm)  
+
+> Every object in C++ has access to its own address through an important pointer called **this**pointer. The **this** pointer is an implicit parameter to all member functions. Therefore, inside a member function, this may be used to refer to the invoking object.
+
+> Friend functions do not have a **this** pointer, because friends are not members of a class. Only member functions have a **this** pointer.
+
+- [References](https://isocpp.org/wiki/faq/references)  
+> **Why does C++ have both pointers and references? ** 
+>
+> C++ inherited pointers from C, so they couldn’t be removed without causing serious compatibility problems. References are useful for several things, but the direct reason they were introduced in C++ was to support operator overloading. For example:
+>
+> ```c++
+>     void f1(const complex* x, const complex* y) // without references
+>     {
+>         complex z = *x+*y;  // ugly
+>         // ...
+>     }
+>     void f2(const complex& x, const complex& y) // with references
+>     {
+>         complex z = x+y;    // better
+>         // ...
+>     }   
+> ```
+>
+> **When should I use references, and when should I use pointers?**
+>
+> Use references when you can, and pointers when you have to.
+>
+> **Should I use call-by-value or call-by-reference?**
+>
+> That depends on what you are trying to achieve:
+>
+> - If you want to **change the object passed**, call by reference or use a pointer;   
+>
+>   e.g., `void f(X&);`or `void f(X*);`.
+>
+> - If you don’t want to **change the object passed and it is big**, call by const reference; 
+>
+>   e.g., `void f(const X&);`.
+>
+> - **Otherwise**, call by value; 
+>
+>   e.g. `void f(X);`.
+>
+> *What does “big” mean?* Anything larger than a couple of words.
+
+- [Use of the & operator in C++ function signatures](https://stackoverflow.com/questions/6877052/use-of-the-operator-in-c-function-signatures)  
+> The `&` character in C++ is dual purpose. It can mean (at least)
+> 1. Take the address of a value
+> 2. Declare a reference to a type
+> 
+> The use you're referring to in the function signature is an instance of #2. The parameter `string& str` is a reference to a `string` instance. This is not just limited to function signatures, it can occur in method bodies as well.
 
 ***
 ### 2018-12-23  
