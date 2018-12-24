@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="This.cpp" />
+    <ClCompile Include="Object_lifetime.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4A58CBC5-85E2-48C3-B652-914D8A3EFF08}</ProjectGuid>
