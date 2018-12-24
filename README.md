@@ -6,6 +6,7 @@
     - [Date: 2018-12-24](#2018-12-24)
         - [Operators and operator overloading](#Operators-and-operator-overloading)
         - [this](#this)
+        - [object lifetime](#object-lifetime)
     - [Date: 2018-12-23](#2018-12-23)
         - [Create objects](#create-objects)
         - [new and delete](#new-and-delete)
@@ -91,7 +92,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Implicit Conversion and the Explicit Keyword in C++" 
 - [x] "OPERATORS and OPERATOR OVERLOADING in C++" 
 - [x] "The &quot;this&quot; keyword in C++" 
-- [ ] "Object Lifetime in C++ (Stack/Scope Lifetimes)" 
+- [x] "Object Lifetime in C++ (Stack/Scope Lifetimes)" 
 - [ ] "SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr)" 
 - [ ] "Copying and Copy Constructors in C++" 
 - [ ] "The Arrow Operator in C++" 
@@ -332,7 +333,132 @@ int  main()
 > 1. Take the address of a value
 > 2. Declare a reference to a type
 > 
-> The use you're referring to in the function signature is an instance of #2. The parameter `string& str` is a reference to a `string` instance. This is not just limited to function signatures, it can occur in method bodies as well.
+> The use you're referring to in the function signature is an instance of #2. The parameter `string& str` is a reference to a `string` instance. This is not just limited to function signatures, it can occur in method bodies as well.  
+
+#### object lifetime  
+In this video, two kinds of *object lifetime* are introduced, they are **stack lifetime** and **scope lifetime**.  
+* stack lifetime  
+```c++
+#include<iostream>
+#include<string>
+
+class Entity
+{
+public:
+	Entity()
+	{
+		std::cout << "Created Entity!" << std::endl;
+	}
+
+	~Entity()
+	{
+		std::cout << "Destroyed Entity!" << std::endl;
+	}
+};
+
+int* CreateArray()
+{
+	int array[50];  // declare it on the stack
+	return array; // it returns a pointer to that stack memory, the stack memory gets cleared as soon as we go out of scope
+}
+
+int main()
+{
+	int* a = CreateArray();
+	{
+		Entity* e = new Entity(); // set breakpoint, even run pass anchor1 to anchor2
+	} // anchor1
+
+	std::cin.get();  // anchor2
+}
+```
+
+1. the stack-based variable gets destroyed as soon as we go out of the scope
+2. it is a mistake that people will create a stack-based variable and try to return a pointer to it, not realizing that once that function ends and you go out of scope that variables done
+
+* scope lifetime  
+```c++
+#include<iostream>
+#include<string>
+
+class Entity
+{
+public:
+	Entity()
+	{
+		std::cout << "Created Entity!" << std::endl;
+	}
+
+	~Entity()
+	{
+		std::cout << "Destroyed Entity!" << std::endl;
+	}
+};
+
+class ScopedPtr
+{
+private:
+	Entity* m_Ptr;
+public:
+	ScopedPtr(Entity* ptr)
+		: m_Ptr(ptr)
+	{
+	}
+
+	~ScopedPtr()
+	{
+		delete m_Ptr;
+	}
+};
+
+int main()
+{
+	{
+		ScopedPtr e = new Entity();
+	} 
+	std::cin.get(); 
+}
+```
+
+the scoped pointer class itself the scoped pointer object gets allocated on the stack which means it gets deleted and when it gets deleted automatically equals delete in the destructor which deletes that pointer `m_Ptr` that it's wrapping  
+
+Some good references can be found as follows:  
+- [C++ Classes and Objects](https://www.geeksforgeeks.org/c-classes-and-objects/)  
+- [Object](https://en.cppreference.com/w/cpp/language/object)  
+- [Object (computer science)](https://en.wikipedia.org/wiki/Object_(computer_science))  
+- [Lifetime](https://en.cppreference.com/w/cpp/language/lifetime)  
+- [What is the lifecycle of a C++ object?](https://stackoverflow.com/questions/17121305/what-is-the-lifecycle-of-a-c-object)  
+
+> > 1) What are all the ways to create a C++ object?
+>
+> Same as C: they can be global variables, local automatic, local static or dynamic. You may be confused by the constructor, but simply think that every time you create an object, a constructor is called. Always. Which constructor is simply a matter of what parameters are used when creating the object.
+>
+> Assignment does not create a new object, it simply copies from one oject to another, (think of `memcpy` but smarter).
+>
+> > 2) What are all the different initialization syntaxes associated with all these types of object creation? What's the difference between T f = x, T f(x);, T f{x};, etc.?
+>
+> - `T f(x)` is the classic way, it simply creates an object of type `T` using the constructor that takes `x` as argument.
+> - `T f{x}` is the new C++11 unified syntax, as it can be used to initialize aggregate types (arrays and such), but other than that it is equivalent to the former.
+> - `T f = x` it depends on whether `x` is of type `T`. If it is, then it equivalent to the former, but if it is of different type, then it is equivalent to `T f = T(x)`. Not that it really matters, because the compiler is allowed to optimize away the extra copy (copy elision).
+> - `T(x)`. You forgot this one. A temporary object of type `T` is created (using the same constructor as above), it is used whereever it happens in the code, and *at the end of the current full expression*, it is destroyed.
+> - `T f`. This creates a value of type `T` using the default constructor, if available. That is simply a constructor that takes no parameters.
+> - `T f{}`. Default contructed, but with the new unified syntax. Note that `T f()` is not an object of type `T`, but instead a function returning `T`!.
+> - `T()`. A temporary object using the default constructor.
+>
+> > 3) Most importantly, when is it correct to copy/assign/whatever = is in C++, and when do you want to use pointers?
+>
+> You can use the same as in C. Think of the copy/assignment as if it where a `memcpy`. You can also pass references around, but you also may wait a while until you feel comfortable with those. What you should do, is: do not use pointers as auxiliary local variables, use references instead.
+>
+> > 4) Finally, what are all these things like shared_ptr, weak_ptr, etc.?
+>
+> They are tools in your C++ tool belt. You will have to learn through experience and some mistakes...
+>
+> - `shared_ptr` use when the ownership of the object is shared.
+> - `unique_ptr` use when the ownership of the object is unique and unambiguous.
+> - `weak_ptr` used to break loops in trees of `shared_ptr`. They are *not* detected automatically.
+> - `vector`. Don't forget this one! Use it to create dynamic arrays of anything.
+>
+> PS: You forgot to ask about **destructors**. IMO, destructors are what gives C++ its personality, so be sure to use a lot of them!
 
 ***
 ### 2018-12-23  
