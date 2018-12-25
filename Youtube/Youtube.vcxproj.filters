@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Smart_pointers.cpp">
+    <ClCompile Include="Copying.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

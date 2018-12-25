@@ -3,6 +3,9 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2018-12-25](#2018-12-25)
+        - [smart pointers](#smart-pointers)
+        - [copying and copy constructor](#copying-and-copy-constructor)
     - [Date: 2018-12-24](#2018-12-24)
         - [Operators and operator overloading](#Operators-and-operator-overloading)
         - [this](#this)
@@ -93,8 +96,8 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "OPERATORS and OPERATOR OVERLOADING in C++" 
 - [x] "The &quot;this&quot; keyword in C++" 
 - [x] "Object Lifetime in C++ (Stack/Scope Lifetimes)" 
-- [ ] "SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr)" 
-- [ ] "Copying and Copy Constructors in C++" 
+- [x] "SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr)" 
+- [x] "Copying and Copy Constructors in C++" 
 - [ ] "The Arrow Operator in C++" 
 - [ ] "Dynamic Arrays in C++ (std::vector)" 
 - [ ] "Optimizing the usage of std::vector in C++" 
@@ -125,6 +128,201 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2018-12-25  
+#### smart pointers  
+> you cannot copy **unique pointer** because it's unique.
+>
+> **shared pointer** has to allocate another block of memory called the control block where it stores that **reference count** and if you first create a new entity and then pass it into the **shared pointer** constructor it has to allocate that's two allocation 
+>
+> when you assign a **shared pointer** to another **shared pointer** thus copying it it will increase the ref count but when you assign a **shared pointer** to a **weak pointer**, it won't increase the ref count  
+
+* `weak pointer`  
+```c++
+int main()
+{
+	{
+		std::weak_ptr<Entity> e0;
+		{
+			std::shared_ptr<Entity> sharedEntity = std::make_shared<Entity>();
+			e0 = sharedEntity;
+		}  // e0 is freed here
+	}
+```
+
+* `shared pointer`  
+```c++
+int main()
+	{
+		std::shared_ptr<Entity> e0;
+		{
+			std::shared_ptr<Entity> sharedEntity = std::make_shared<Entity>();
+			e0 = sharedEntity;
+		} // e0 still holds the reference to the entity
+	}  // here, memeory is freed because it passes two scopes*/
+```
+
+* `unique pointer`  
+```c++
+int main()
+{
+		{
+			//std::unique_ptr<Entity> entity(new Entity());
+			std::unique_ptr<Entity> entity = std::make_unique<Entity>();
+			std::unique_ptr<Entity> e0 = entity;  // wrong, because you cannot copy unique pointer
+		} 
+} 
+```
+
+1. `<Entity>` is the template argument
+2. entity is the `unique pointer` name, then we have option to call constructor
+3. `unique pointer` is defined explicitly
+
+- [What does `->` mean in C++?](https://stackoverflow.com/questions/4113365/what-does-mean-in-c)  
+> It's to access a **member function** or **member variable** of an object through a *pointer*, as opposed to a regular variable or reference.
+>
+> For example: with a regular variable or reference, you use the `.` operator to access member functions or member variables.
+>
+> ```c++
+> std::string s = "abc";
+> std::cout << s.length() << std::endl;
+> ```
+>
+> But if you're working with a pointer, you need to use the `->` operator:
+>
+> ```c++
+> std::string* s = new std::string("abc");
+> std::cout << s->length() << std::endl;
+> ```
+>
+> It can also be overloaded to perform a specific function for a certain object type. Smart pointers like `shared_ptr` and `unique_ptr`, as well as STL container iterators, overload this operator to mimic native pointer semantics.
+>
+> For example:
+>
+> ```c++
+> std::map<int, int>::iterator it = mymap.begin(), end = mymap.end();
+> for (; it != end; ++it)
+>     std::cout << it->first << std::endl;
+> ```
+> `a->b` means `(*a).b`.
+>
+> If `a` is a *pointer*, `a->b` is the member `b` of which `a` points to.  
+
+#### copying and copy constructor  
+> what we need is deep copy, copy the entire object
+>
+> copy constructor is a constructor that gets called for that second string when you actually copy it
+>
+> when you assign a string to an object that is also a string when you try to create a new variable and you assign it with another variable which has the same type as a variable that you're actually creating you're copying that variable and thus you're calling something called the `copy constructor`
+```c++
+#include<iostream>
+#include<string>
+
+struct Vector2
+{
+	float x, y;
+}; 
+
+class String // string is made up of an array of characters
+{
+private:
+	char* m_Buffer; // point to the buffer of chars
+	unsigned int m_Size; // keep track of how big the string is
+public:
+	String(const char* string) // constructor
+	{
+		m_Size = strlen(string); // calculate how long the string is, so that we can copy the data from the string into the buffer
+		m_Buffer = new char[m_Size + 1]; // decide how big of the buffer is
+		memcpy(m_Buffer, string, m_Size);
+		m_Buffer[m_Size] = 0;
+	}
+
+	String(const String& other) // copy constructor
+		: m_Size(other.m_Size) // it's just an integer, so shallow copy is okay
+	{
+		std::cout << "Copied String!" << std::endl;
+
+		m_Buffer = new char[m_Size + 1];
+		memcpy(m_Buffer, other.m_Buffer, m_Size + 1);
+	}
+	/*	: m_Buffer(other.m_Buffer), m_Size(other.m_Size)  // default copy constructor
+	{
+	}*/
+
+	// or use another way to define copy constructor
+	/*String(const String& other)
+	{
+		memcpy(this, &other, sizeof(String));
+	}
+	*/
+
+	~String() // destructor
+	{
+		delete[] m_Buffer;
+	}
+
+	char& operator[](unsigned int index)  // operator overload
+	{
+		return m_Buffer[index];
+	}
+
+	friend std::ostream& operator<<(std::ostream& stream, const String& string);
+};
+
+std::ostream& operator<<(std::ostream& stream, const String& string)
+{
+	stream << string.m_Buffer;
+	return stream;
+}
+
+// if reference is not used, we get three string copies happening
+// anchor3, anchor4, anchor5 totally three times copying
+// what's actually happening is every time we copy a string we allocate memory on the heap, copy all that memory and then at the end of it, we free it. That's completely unnecessary.
+void PrintString(const String& string)  // anchor2 
+{
+	std::cout << string << std::endl;
+}
+
+int main()
+{
+	/*int a = 2;
+	int b = a;
+	b = 3;  // a remains 2
+	*/
+	
+	/*Vector2 a = { 2, 3 };
+	Vector2 b = a;
+	b.x = 5;  // a, b are two separate Vector2s 
+	*/
+
+	/*Vector2* a = new Vector2();
+	Vector2* b = a; // actually copy the pointer
+	b->x = 2;  // a and b are both pointing to the same memory address
+	*/
+
+	String string = "Cherno"; // m_Buffer = 0x00a517d0
+	String second = string;  // anchor3, shallow cpoy a string, m_Buffer = 0x00a517d0
+	// these two char pointers point to the same address
+
+	second[2] = 'a';
+
+	PrintString(string);  // anchor4
+	PrintString(second);  // anchor5
+
+	/*std::cout << string << std::endl;
+	std::cout << second << std::endl;
+	*/
+
+	std::cin.get();
+} // anchor 1, when the code run to anchor1, it tries to delete the buffer twice so we are trying to free the same block of memory twice. that's why we get a crash because the memory has already been freed it's not ours, we can not free it again
+```
+1. `strcpy` includes the null termination character
+2. keep in mind that always pass your objects by const reference `const&`
+3. In this code, a string class is created, which includes two members: `char pointe`r and `int`.
+4. In user-defined string class, `constructor`, `destructor`, `copy constructor`, `operator overloading` and a `friend` declaration are developed.
+5. `friend` declaration is a new feature for me, the detailed knowledge can be found [here](https://en.cppreference.com/w/cpp/language/friend).   
+> The `friend` declaration appears in a *class body* and **grants a function or another class access to private and protected members of the class** where the friend declaration appears.  
+
+***
 ### 2018-12-24  
 #### Operators and operator overloading  
 > operators are just functions 
@@ -469,30 +667,31 @@ Some good references can be found as follows:
 ​         once you allocated an object in that heap, it's up to you to determine when to free that block of memory
 
 * create class  
-​```c++
-class Entity
-{
-private:
-	String m_Name;
-public:
-	Entity() 
-	​	: m_Name("Unkown")  //constructor 
-	{
-	}
-	Entity(const String& name) 
-	​	: m_Name(name) 
-	{
-	}
 
-	const String& GetName() const 
-	{ 
-	​	return m_Name; 
-	}
-};
+```c++
+  class Entity
+  {
+  private:
+  String m_Name;
+  public:
+  Entity() 
+	: m_Name("Unkown")  //constructor 
+  	{
+  	}
+  Entity(const String& name) 
+	: m_Name(name) 
+  	{
+  	}
+  const String& GetName() const 
+  	{ 
+		return m_Name; 
+  	}
+  };
 ```
 
 * objects created on the stack  
-​```c++
+
+```c++
 int main()
 {
 	Entity* e;
@@ -506,6 +705,7 @@ int main()
 ```
 
 * objects created on the heap  
+
 ```c++
 int main()
 {
