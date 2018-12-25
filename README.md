@@ -7,6 +7,7 @@
         - [smart pointers](#smart-pointers)
         - [copying and copy constructor](#copying-and-copy-constructor)
         - [array operator](#array-operator)
+        - [dynamic arrays](#dynamic-arrays)
     - [Date: 2018-12-24](#2018-12-24)
         - [Operators and operator overloading](#Operators-and-operator-overloading)
         - [this](#this)
@@ -100,7 +101,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr)" 
 - [x] "Copying and Copy Constructors in C++" 
 - [x] "The Arrow Operator in C++" 
-- [ ] "Dynamic Arrays in C++ (std::vector)" 
+- [x] "Dynamic Arrays in C++ (std::vector)" 
 - [ ] "Optimizing the usage of std::vector in C++" 
 - [ ] "Using Libraries in C++ (Static Linking)" 
 - [ ] "Using Dynamic Libraries in C++" 
@@ -348,7 +349,25 @@ int main() // entry point
 1. first, we cast a `nullptr` to `Vector3*` type
 2. use `->` to point to the class member
 3. use `&` to obtain the address of variable in the memory
-4. use `int` to cast it into integer type
+4. use `int` to cast it into integer type  
+
+#### dynamic arrays  
+> It's called a vector because Alex Stepanov, the designer of the Standard Template Library, was looking for a name to distinguish it from built-in arrays. He admits now that he made a mistake, because mathematics already uses the term 'vector' for a fixed-length sequence of numbers. Now C++0X will compound this mistake by introducing a class 'array' that will behave similar to a mathematical vector.
+>
+> Alex's lesson: be very careful every time you name something.
+>
+> https://stackoverflow.com/questions/581426/why-is-a-c-vector-called-a-vector  
+
+> vector belongs to std namespace
+>
+> in fact, it shouldn't be called vector, it should be called something like arraylist
+>
+> vector can actually resize, thus it is truely called dynamic array
+>
+> all u need to do is allocate a vector, such as 10 elements, when you wanna extend it much bigger, then it will create a new array, copy the old one and paste it to the new one, finally, automatically delete the old one.
+
+- [std::vector](https://en.cppreference.com/w/cpp/container/vector)
+- [std::vector::erase](http://www.cplusplus.com/reference/vector/vector/erase/)
 
 ***
 ### 2018-12-24  
