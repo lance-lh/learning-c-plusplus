@@ -6,6 +6,7 @@
     - [Date: 2018-12-25](#2018-12-25)
         - [smart pointers](#smart-pointers)
         - [copying and copy constructor](#copying-and-copy-constructor)
+        - [array operator](#array-operator)
     - [Date: 2018-12-24](#2018-12-24)
         - [Operators and operator overloading](#Operators-and-operator-overloading)
         - [this](#this)
@@ -98,7 +99,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Object Lifetime in C++ (Stack/Scope Lifetimes)" 
 - [x] "SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr)" 
 - [x] "Copying and Copy Constructors in C++" 
-- [ ] "The Arrow Operator in C++" 
+- [x] "The Arrow Operator in C++" 
 - [ ] "Dynamic Arrays in C++ (std::vector)" 
 - [ ] "Optimizing the usage of std::vector in C++" 
 - [ ] "Using Libraries in C++ (Static Linking)" 
@@ -176,36 +177,6 @@ int main()
 1. `<Entity>` is the template argument
 2. entity is the `unique pointer` name, then we have option to call constructor
 3. `unique pointer` is defined explicitly
-
-- [What does `->` mean in C++?](https://stackoverflow.com/questions/4113365/what-does-mean-in-c)  
-> It's to access a **member function** or **member variable** of an object through a *pointer*, as opposed to a regular variable or reference.
->
-> For example: with a regular variable or reference, you use the `.` operator to access member functions or member variables.
->
-> ```c++
-> std::string s = "abc";
-> std::cout << s.length() << std::endl;
-> ```
->
-> But if you're working with a pointer, you need to use the `->` operator:
->
-> ```c++
-> std::string* s = new std::string("abc");
-> std::cout << s->length() << std::endl;
-> ```
->
-> It can also be overloaded to perform a specific function for a certain object type. Smart pointers like `shared_ptr` and `unique_ptr`, as well as STL container iterators, overload this operator to mimic native pointer semantics.
->
-> For example:
->
-> ```c++
-> std::map<int, int>::iterator it = mymap.begin(), end = mymap.end();
-> for (; it != end; ++it)
->     std::cout << it->first << std::endl;
-> ```
-> `a->b` means `(*a).b`.
->
-> If `a` is a *pointer*, `a->b` is the member `b` of which `a` points to.  
 
 #### copying and copy constructor  
 > what we need is deep copy, copy the entire object
@@ -321,6 +292,63 @@ int main()
 4. In user-defined string class, `constructor`, `destructor`, `copy constructor`, `operator overloading` and a `friend` declaration are developed.
 5. `friend` declaration is a new feature for me, the detailed knowledge can be found [here](https://en.cppreference.com/w/cpp/language/friend).   
 > The `friend` declaration appears in a *class body* and **grants a function or another class access to private and protected members of the class** where the friend declaration appears.  
+
+#### array operator  
+
+- [What does `->` mean in C++?](https://stackoverflow.com/questions/4113365/what-does-mean-in-c)  
+
+> It's to access a **member function** or **member variable** of an object through a *pointer*, as opposed to a regular variable or reference.
+>
+> For example: with a regular variable or reference, you use the `.` operator to access member functions or member variables.
+>
+> ```c++
+> std::string s = "abc";
+> std::cout << s.length() << std::endl;
+> ```
+>
+> But if you're working with a pointer, you need to use the `->` operator:
+>
+> ```c++
+> std::string* s = new std::string("abc");
+> std::cout << s->length() << std::endl;
+> ```
+>
+> It can also be overloaded to perform a specific function for a certain object type. Smart pointers like `shared_ptr` and `unique_ptr`, as well as STL container iterators, overload this operator to mimic native pointer semantics.
+>
+> For example:
+>
+> ```c++
+> std::map<int, int>::iterator it = mymap.begin(), end = mymap.end();
+> for (; it != end; ++it)
+>     std::cout << it->first << std::endl;
+> ```
+>
+> `a->b` means `(*a).b`.
+>
+> If `a` is a *pointer*, `a->b` is the member `b` of which `a` points to.  
+
+* get the offset of a certain member variable in memory  
+```c++
+struct Vector3
+{
+	float x, y, z;
+};
+
+int main() // entry point
+{
+	int offset = (int)&((Vector3*)nullptr)->z;
+	std::cout << offset << std::endl;
+	
+	std::cin.get();
+}
+```
+
+`int offset = (int)&((Vector3*)nullptr)->z;` 
+
+1. first, we cast a `nullptr` to `Vector3*` type
+2. use `->` to point to the class member
+3. use `&` to obtain the address of variable in the memory
+4. use `int` to cast it into integer type
 
 ***
 ### 2018-12-24  

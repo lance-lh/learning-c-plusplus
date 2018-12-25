@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Copying.cpp">
+    <ClCompile Include="Array_operator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
