@@ -3,6 +3,7 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2018-12-26](#2018-12-26)
     - [Date: 2018-12-25](#2018-12-25)
         - [smart pointers](#smart-pointers)
         - [copying and copy constructor](#copying-and-copy-constructor)
@@ -130,6 +131,29 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2018-12-26  
+* [STL](https://www.geeksforgeeks.org/the-c-standard-template-library-stl/)  
+> The Standard Template Library (STL) is a set of C++ template classes to provide common programming data structures and functions such as **lists, stacks, arrays, etc**. It is a library of container classes, algorithms and iterators. It is a generalized library and so, its components are parameterized. A working knowledge of template classes is a prerequisite  for working with STL.  
+
+![](https://i.loli.net/2018/12/26/5c2338938d60d.png)  
+> 1. The **Standard Template Library **(STL) is a set of C++ template classes to provide common programming data structures and functions such as lists, stacks, arrays, etc. It is a library of container classes, algorithms and iterators. It is a generalized library and so, its components are parameterized. A working knowledge of template classes is a prerequisite  for working with STL.  
+> 2. The header **algorithm** defines a collection of functions especially designed to be used on ranges of elements. They act on containers and provide means for various operations  for the contents of the containers.
+> 3. **Containers** or container classes store objects and data. There are in total seven standard “first-class” container classes  and three container adaptor classes and only seven header files that provide access to these containers or container adaptors.
+> 4. The STL includes classes that overload the **function** call operator. Instances of such classes are called function objects or functors. Functors allow the working of the associated function to be customized with the help of parameters to be passed.
+> 5. As the name suggests, **iterators** are used for working upon a sequence of values. They are the major feature that allow generality in STL.  
+
+* [Iterators](https://www.geeksforgeeks.org/iterators-c-stl/)  
+> Iterators are used to point at the memory addresses of STL containers. They are primarily used in sequence of numbers, characters etc. They reduce the complexity and execution time of program.  
+> Operations of iterators :-
+>
+> 1. `begin() `:- This function is used to return the beginning position of the container.
+> 2. `end() `:- This function is used to return the after end position of the container.
+> 3. `advance() `:- This function is used to increment the iterator position till the specified number mentioned in its arguments.
+> 4. `next()` :- This function returns the new iterator that the iterator would point after advancing the positions mentioned in its arguments.
+> 5. `prev()` :- This function returns the new iterator that the iterator would point after decrementing the positions mentioned in its arguments.
+> 6. `inserter() `:- This function is used to insert the elements at any position in the container. It accepts 2 arguments, the container and iterator to position where the elements have to be inserted.
+
+***
 ### 2018-12-25  
 #### smart pointers  
 > you cannot copy **unique pointer** because it's unique.
