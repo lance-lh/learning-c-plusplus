@@ -4,6 +4,7 @@
 - [NewProject](#newproject)
 - [Youtube](#youtube)
     - [Date: 2018-12-26](#2018-12-26)
+        - [vector optimization](#vector-optimization)
     - [Date: 2018-12-25](#2018-12-25)
         - [smart pointers](#smart-pointers)
         - [copying and copy constructor](#copying-and-copy-constructor)
@@ -103,7 +104,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Copying and Copy Constructors in C++" 
 - [x] "The Arrow Operator in C++" 
 - [x] "Dynamic Arrays in C++ (std::vector)" 
-- [ ] "Optimizing the usage of std::vector in C++" 
+- [x] "Optimizing the usage of std::vector in C++" 
 - [ ] "Using Libraries in C++ (Static Linking)" 
 - [ ] "Using Dynamic Libraries in C++" 
 - [ ] "Making and Working with Libraries in C++ (Multiple Projects in Visual Studio)" 
@@ -136,7 +137,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 > The Standard Template Library (STL) is a set of C++ template classes to provide common programming data structures and functions such as **lists, stacks, arrays, etc**. It is a library of container classes, algorithms and iterators. It is a generalized library and so, its components are parameterized. A working knowledge of template classes is a prerequisite  for working with STL.  
 
 ![](https://i.loli.net/2018/12/26/5c2338938d60d.png)  
-> 1. The **Standard Template Library **(STL) is a set of C++ template classes to provide common programming data structures and functions such as lists, stacks, arrays, etc. It is a library of container classes, algorithms and iterators. It is a generalized library and so, its components are parameterized. A working knowledge of template classes is a prerequisite  for working with STL.  
+> 1. The **Standard Template Library** (STL) is a set of C++ template classes to provide common programming data structures and functions such as lists, stacks, arrays, etc. It is a library of container classes, algorithms and iterators. It is a generalized library and so, its components are parameterized. A working knowledge of template classes is a prerequisite  for working with STL.  
 > 2. The header **algorithm** defines a collection of functions especially designed to be used on ranges of elements. They act on containers and provide means for various operations  for the contents of the containers.
 > 3. **Containers** or container classes store objects and data. There are in total seven standard “first-class” container classes  and three container adaptor classes and only seven header files that provide access to these containers or container adaptors.
 > 4. The STL includes classes that overload the **function** call operator. Instances of such classes are called function objects or functors. Functors allow the working of the associated function to be customized with the help of parameters to be passed.
@@ -151,7 +152,60 @@ It provides a recommended `VS` *Directory Structure* as follows:
 > 3. `advance() `:- This function is used to increment the iterator position till the specified number mentioned in its arguments.
 > 4. `next()` :- This function returns the new iterator that the iterator would point after advancing the positions mentioned in its arguments.
 > 5. `prev()` :- This function returns the new iterator that the iterator would point after decrementing the positions mentioned in its arguments.
-> 6. `inserter() `:- This function is used to insert the elements at any position in the container. It accepts 2 arguments, the container and iterator to position where the elements have to be inserted.
+> 6. `inserter() `:- This function is used to insert the elements at any position in the container. It accepts 2 arguments, the container and iterator to position where the elements have to be inserted.  
+
+#### vector optimization  
+```c++
+#include<iostream>
+#include<string>
+#include<vector>
+
+struct Vertex
+{
+	float x, y, z;
+
+	Vertex(float x, float y, float z)
+		: x(x), y(y), z(z)
+	{
+	}
+
+	Vertex(const Vertex& vertex)
+		: x(vertex.x), y(vertex.y), z(vertex.z)
+	{
+		std::cout << "Copied!" << std::endl;
+	}
+};
+
+int main()
+{
+	std::vector<Vertex> vertices;
+	//std::vector<Vertex> vertices(3); // it's gonna to construct three vertex objects
+
+	vertices.reserve(3); // reserve makes sure that we have enough memory 
+	// it prints 6 copies to console. 
+	/*vertices.push_back(Vertex(1, 2, 3 )); // construct it in the current stack frame of the main function and put it into that vector
+	vertices.push_back(Vertex(4, 5, 6)); 
+	vertices.push_back(Vertex(7, 8, 9));*/
+
+	vertices.emplace_back(1, 2, 3); 
+	vertices.emplace_back(4, 5, 6);
+	vertices.emplace_back(7, 8, 9);
+
+	std::cin.get();
+}
+```
+
+> optimization 1: construct that vertex in place in the actual memory that the vector actually allocated for us
+>
+> `emplace_back`: pass the parameter list for the constructor. hey, construct a vertex object with the following parameters in place in our actual memory
+>
+> optimization 2: if you know how many elements you need to add, you can predefine enough size to contain them
+>
+> `reserve`
+
+- Here is a detailed and easy-understood explanation of [vector copy constructor](http://www-h.eng.cam.ac.uk/help/tpl/languages/C++/morevectormemory.html).  
+
+- [Ways to copy a vector in C++](https://www.geeksforgeeks.org/ways-copy-vector-c/)  
 
 ***
 ### 2018-12-25  

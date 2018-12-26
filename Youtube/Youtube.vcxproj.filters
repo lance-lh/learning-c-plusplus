@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Dynamic_arrays.cpp">
+    <ClCompile Include="Vector_optimization.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
