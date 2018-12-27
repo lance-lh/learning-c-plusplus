@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vector_copy_constructor.cpp">
+    <ClCompile Include="Vector_copy_constructor_optimization.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
