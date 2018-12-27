@@ -3,6 +3,7 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2018-12-27](#2018-12-27)
     - [Date: 2018-12-26](#2018-12-26)
         - [vector optimization](#vector-optimization)
     - [Date: 2018-12-25](#2018-12-25)
@@ -132,6 +133,38 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2018-12-27  
+- [C++ Copy Constructor](https://blog.csdn.net/fox64194167/article/details/21174575)  
+> 浅拷贝：两个变量进行浅拷贝时，它们指向同一个地址，它们的值相同。这样会有问题，当其中的一个析构了那个地址，另外一个也没有了，有时候会发生错误，但浅拷贝比较廉价。
+>
+> 深拷贝：两个变量进行深拷贝时，第二变量会重新申请一块区域来存放跟第一个变量指向地址的值。两个东西完全是独立的，只是值相同。消耗比较大，因为要重新申请空间。  
+
+- [Shallow and Deep Copy in C++](https://youtu.be/C_nLA3hfw8E)  
+> https://youtu.be/C_nLA3hfw8E  
+
+  This is an illustration of how deep copy works I cropped from the video and stitched. The video link is provided above with hyper link. It really  helps me a lot.   
+
+  ![](https://i.loli.net/2018/12/27/5c2444ace9b07.jpg)
+
+- [C++ Notes: Shallow vs Deep Copies](http://www.fredosaurus.com/notes-cpp/oop-condestructors/shallowdeepcopy.html)  
+> A *shallow copy* of an object copies all of the member field values. This works well if the fields are values, but may not be what you want for fields that point to dynamically allocated memory. The pointer will be copied. but the memory it points to will not be copied -- the field in both the original object and the copy will then point to the same dynamically allocated memory, which is not usually what you want. The default copy constructor and assignment operator make shallow copies.
+>
+> A *deep copy* copies all fields, and makes copies of dynamically allocated memory pointed to by the fields. To make a deep copy, you must write a copy constructor and overload the assignment operator, otherwise the copy will point to the original, with disasterous consequences.
+
+- [std::vector::capacity](http://www.cplusplus.com/reference/vector/vector/capacity/)  
+> `size_type capacity() const noexcept;`
+>
+> **Return size of allocated storage capacity**
+>
+> Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
+>
+> *This capacity is not necessarily equal to the vector size. It can be equal or greater, with the extra space allowing to accommodate for growth without the need to reallocate on each insertion.*
+>
+> Notice that this *capacity* does not suppose a limit on the size of the vector. When this capacity is exhausted and more is needed, it is automatically expanded by the container (reallocating it storage space). The theoretical limit on the size of a vector is given by member max_size.
+>
+> The *capacity* of a vector can be explicitly altered by calling member `vector::reserve`.
+
+***
 ### 2018-12-26  
 * [STL](https://www.geeksforgeeks.org/the-c-standard-template-library-stl/)  
 > The Standard Template Library (STL) is a set of C++ template classes to provide common programming data structures and functions such as **lists, stacks, arrays, etc**. It is a library of container classes, algorithms and iterators. It is a generalized library and so, its components are parameterized. A working knowledge of template classes is a prerequisite  for working with STL.  

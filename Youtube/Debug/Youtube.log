@@ -1,60 +1,13 @@
-﻿Build started 2018/12/26 22:44:54.
+﻿Build started 2018/12/27 11:33:43.
      1>Project "D:\c++ files\Youtube\Youtube.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         E:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Vector_optimization.cpp
-         Vector_optimization.cpp
-     1>e:\program files (x86)\microsoft visual studio 14.0\vc\include\xmemory0(657): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-         e:\program files (x86)\microsoft visual studio 14.0\vc\include\xmemory0(775): note: see reference to function template instantiation 'void std::allocator<_Ty>::construct<_Objty,int,int,int>(_Objty *,int &&,int &&,int &&)' being compiled
-                 with
-                 [
-                     _Ty=Vertex,
-                     _Objty=Vertex
-                 ]
-         e:\program files (x86)\microsoft visual studio 14.0\vc\include\xmemory0(775): note: see reference to function template instantiation 'void std::allocator<_Ty>::construct<_Objty,int,int,int>(_Objty *,int &&,int &&,int &&)' being compiled
-                 with
-                 [
-                     _Ty=Vertex,
-                     _Objty=Vertex
-                 ]
-         e:\program files (x86)\microsoft visual studio 14.0\vc\include\xmemory0(920): note: see reference to function template instantiation 'void std::allocator_traits<_Alloc>::construct<_Ty,int,int,int>(std::allocator<_Ty> &,_Objty *,int &&,int &&,int &&)' being compiled
-                 with
-                 [
-                     _Alloc=std::allocator<Vertex>,
-                     _Ty=Vertex,
-                     _Objty=Vertex
-                 ]
-         e:\program files (x86)\microsoft visual studio 14.0\vc\include\xmemory0(920): note: see reference to function template instantiation 'void std::allocator_traits<_Alloc>::construct<_Ty,int,int,int>(std::allocator<_Ty> &,_Objty *,int &&,int &&,int &&)' being compiled
-                 with
-                 [
-                     _Alloc=std::allocator<Vertex>,
-                     _Ty=Vertex,
-                     _Objty=Vertex
-                 ]
-         e:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(929): note: see reference to function template instantiation 'void std::_Wrap_alloc<std::allocator<_Ty>>::construct<Vertex,int,int,int>(_Ty *,int &&,int &&,int &&)' being compiled
-                 with
-                 [
-                     _Ty=Vertex
-                 ]
-         e:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(929): note: see reference to function template instantiation 'void std::_Wrap_alloc<std::allocator<_Ty>>::construct<Vertex,int,int,int>(_Ty *,int &&,int &&,int &&)' being compiled
-                 with
-                 [
-                     _Ty=Vertex
-                 ]
-         d:\c++ files\youtube\vector_optimization.cpp(32): note: see reference to function template instantiation 'void std::vector<Vertex,std::allocator<_Ty>>::emplace_back<int,int,int>(int &&,int &&,int &&)' being compiled
-                 with
-                 [
-                     _Ty=Vertex
-                 ]
-         d:\c++ files\youtube\vector_optimization.cpp(32): note: see reference to function template instantiation 'void std::vector<Vertex,std::allocator<_Ty>>::emplace_back<int,int,int>(int &&,int &&,int &&)' being compiled
-                 with
-                 [
-                     _Ty=Vertex
-                 ]
+         E:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Vector_copy_constructor.cpp
+         Vector_copy_constructor.cpp
        Link:
-         E:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\c++ files\Youtube\Debug\Youtube.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\c++ files\Youtube\Debug\Youtube.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\c++ files\Youtube\Debug\Youtube.lib" /MACHINE:X86 Debug\Vector_optimization.obj
+         E:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\c++ files\Youtube\Debug\Youtube.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\c++ files\Youtube\Debug\Youtube.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\c++ files\Youtube\Debug\Youtube.lib" /MACHINE:X86 Debug\Vector_copy_constructor.obj
          Youtube.vcxproj -> D:\c++ files\Youtube\Debug\Youtube.exe
      1>Done Building Project "D:\c++ files\Youtube\Youtube.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.88
+Time Elapsed 00:00:01.33
