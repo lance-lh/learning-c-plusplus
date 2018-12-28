@@ -4,6 +4,7 @@
 - [NewProject](#newproject)
 - [Youtube](#youtube)
     - [Date: 2018-12-28](#2018-12-28)
+        - [dynamic linking](#dynamic-linking)
     - [Date: 2018-12-27](#2018-12-27)
         - [static linking](#static-linking)
     - [Date: 2018-12-26](#2018-12-26)
@@ -109,7 +110,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Dynamic Arrays in C++ (std::vector)" 
 - [x] "Optimizing the usage of std::vector in C++" 
 - [x] "Using Libraries in C++ (Static Linking)" 
-- [ ] "Using Dynamic Libraries in C++" 
+- [x] "Using Dynamic Libraries in C++" 
 - [ ] "Making and Working with Libraries in C++ (Multiple Projects in Visual Studio)" 
 - [ ] "How to Deal with Multiple Return Values in C++" 
 - [ ] "Templates in C++" 
@@ -145,13 +146,36 @@ It provides a recommended `VS` *Directory Structure* as follows:
 >
 > A more complete description is available in the GCC [documentation on search paths](https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html).
 
+#### dynamic linking  
+In my opinion, **dynamic linking** means your executable is separated from some **.dll** (dynamic linking libraries). On the contrary, **static linking** means when you compile and link your code, some necessary libraries are incorporated into your final executable file, so it doesn't need some extra libraries support since it already includes all necessary stuffs. In other word, because static linking relates with some compilation and linking procedure, it actually has to consider some optimizations so that the final executable will be more efficient.  
+* Dynamic linking vs Static linking [link](http://cs-fundamentals.com/tech-interview/c/difference-between-static-and-dynamic-linking.php)  
+> The program we write might make use of other programs (which is usually the case), or libraries of programs. These other programs or libraries must be brought together with the program we write in order to execute it.
+>
+> Linking is the process of bringing external programs together required by the one we write for its successful execution. Static and dynamic linking are two processes of collecting and combining multiple object files in order to create a single executable. Here we will discuss the difference between them. Read full article on static and dynamic linking for more details. 
+>
+> Linking can be performed at both compile time, when the source code is translated into machine code; and load time, when the program is loaded into memory by the loader, and even at run time, by application programs. And, it is performed by programs called linkers. Linkers are also called link editors. Linking is performed as the last step in compiling a program. 
+>
+> After linking, for execution the combined program must be moved into memory. In doing so, there must be addresses assigned to the data and instructions for execution purposes. The above process can be summarized as program life cycle (**write -> compile -> link -> load -> execute**).
+
+
+
+| Static Linking                                               | Dynamic Linking                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Static linking is the process of copying all library modules used in the program into the final executable image. This is performed by the linker and it is done as the last step of the compilation process. The linker combines library routines with the program code in order to resolve external references, and to generate an executable image suitable for loading into memory. When the program is loaded, the operating system places into memory a single file that contains the executable code and data. This statically linked file includes both the calling program and the called program. | In dynamic linking the names of the external libraries (shared libraries) are placed in the final executable file while the actual linking takes place at run time when both executable file and libraries are placed in the memory. Dynamic linking lets several programs use a single copy of an executable module. |
+| Static linking is performed by programs called linkers as the last step in compiling a program. Linkers are also called link editors. | Dynamic linking is performed at run time by the operating system. |
+| Statically linked files are significantly larger in size because external programs are built into the executable files. | In dynamic linking only one copy of shared library is kept in memory. This significantly reduces the size of executable programs, thereby saving memory and disk space. |
+| In static linking if any of the external programs has changed then they have to be recompiled and re-linked again else the changes won't reflect in existing executable file. | In dynamic linking this is not the case and individual shared modules can be updated and recompiled. This is one of the greatest advantages dynamic linking offers. |
+| Statically linked program takes constant load time every time it is loaded into the memory for execution. | In dynamic linking load time might be reduced if the shared library code is already present in memory. |
+| Programs that use statically-linked libraries are usually faster than those that use shared libraries. | Programs that use shared libraries are usually slower than those that use statically-linked libraries. |
+| In statically-linked programs, all code is contained in a single executable module. Therefore, they never run into compatibility issues. | Dynamically linked programs are dependent on having a compatible library. If a library is changed (for example, a new compiler release may change a library), applications might have to be reworked to be made compatible with the new version of the library. If a library is removed from the system, programs using that library will no longer work. |
+
 ***
 ### 2018-12-27  
 #### static linking  
 
 1. Download **GLFW** [here](https://www.glfw.org/download.html) , choose *32-bit  Windows binaries*.  
 2. Unzip **glfw-3.2.1.bin.WIN32.zip** file
-3. Copy **inlucde** and **lib-vc2015** two folders to a new foldercalled **GLFW**
+3. Copy **include** and **lib-vc2015** two folders to a new folder called **GLFW**
 4. Copy the entire folder **GLFW** to a new folder called **Dependencies** 
 5. Copy the **Dependencies** folder to project root directory
 6. So, the final project folder looks like this: 
