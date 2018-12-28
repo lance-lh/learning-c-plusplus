@@ -3,7 +3,9 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2018-12-28](#2018-12-28)
     - [Date: 2018-12-27](#2018-12-27)
+        - [static linking](#static-linking)
     - [Date: 2018-12-26](#2018-12-26)
         - [vector optimization](#vector-optimization)
     - [Date: 2018-12-25](#2018-12-25)
@@ -106,7 +108,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "The Arrow Operator in C++" 
 - [x] "Dynamic Arrays in C++ (std::vector)" 
 - [x] "Optimizing the usage of std::vector in C++" 
-- [ ] "Using Libraries in C++ (Static Linking)" 
+- [x] "Using Libraries in C++ (Static Linking)" 
 - [ ] "Using Dynamic Libraries in C++" 
 - [ ] "Making and Working with Libraries in C++ (Multiple Projects in Visual Studio)" 
 - [ ] "How to Deal with Multiple Return Values in C++" 
@@ -133,7 +135,52 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2018-12-28  
+* What is the difference between `#include <filename>` and `#include “filename”`?  
+> In practice, the difference is in **the location where the preprocessor searches for the included file**.
+>
+> For `#include <filename> `the preprocessor searches in an implementation dependent manner, normally in search directories pre-designated by the compiler/IDE. This method is normally used to include **standard library header files**.
+>
+> For `#include "filename"` the preprocessor searches first in the same directory as the file containing the directive, and then follows the search path used for the `#include <filename>` form. This method is normally used to **include programmer-defined header files**.
+>
+> A more complete description is available in the GCC [documentation on search paths](https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html).
+
+***
 ### 2018-12-27  
+#### static linking  
+
+1. Download **GLFW** [here](https://www.glfw.org/download.html) , choose *32-bit  Windows binaries*.  
+2. Unzip **glfw-3.2.1.bin.WIN32.zip** file
+3. Copy **inlucde** and **lib-vc2015** two folders to a new foldercalled **GLFW**
+4. Copy the entire folder **GLFW** to a new folder called **Dependencies** 
+5. Copy the **Dependencies** folder to project root directory
+6. So, the final project folder looks like this: 
+
+   ![](https://i.loli.net/2018/12/28/5c258f617d5ea.png)
+
+* 	**Microsoft Visual Studio Setup**  
+1. Open Project Properties
+
+2. Configuration: All Configurations, Platform: Win32
+
+3. C/C++ -> General -> Additional Include Directories -> **$(SolutionDir)Dependencies\GLFW\include**
+
+4. Linker -> Input -> Addtional Dependicies -> add "glfw3.lib" into the blank
+
+5. Linker -> General -> Additional Library Directories -> $(SolutionDir)Dependencies\GLFW\lib-vc2015
+
+   note that:  my **$(SolutionDir)** is located at D:\c++ files\HelloWorld\  
+
+> static linking means library actually gets basically put into your excutable so it's just inside your .exe file or whatever your executable is for your operating system.
+>
+> a dynamic library gets linked at runtime so you still do have some kind of linkage you can choose to load a dynamic library. literally, there is a function called load library which you can use in the Windows API as an example and that will load you like your dynamic library and you can pull function pointers out of that. 
+>
+> glfw3.dll is the runtime kind of dynamic link library that we actually use if we are linking dynamically at runtime
+>
+> glfw3dll.lib is actually kind of the static library that we use with the dll. This file actually contains all of the locations of the functions and symbols inside glfw3.dll so that we can link against them at compile time 
+>
+> glfw3.lib is the static library, we do not need glfw3.dll file to be without exe file at runtime 
+
 - [C++ Copy Constructor](https://blog.csdn.net/fox64194167/article/details/21174575)  
 > 浅拷贝：两个变量进行浅拷贝时，它们指向同一个地址，它们的值相同。这样会有问题，当其中的一个析构了那个地址，另外一个也没有了，有时候会发生错误，但浅拷贝比较廉价。
 >
