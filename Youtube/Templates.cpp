@@ -1,18 +1,20 @@
-// template does not exist until we call it
+// the compiler writes code for you based on the rules that you've given it and based on the uage of that functional class or anything like that
 #include<iostream>
 #include<string>
 
-template<typename T>
-void Print(T value) // it can automatically deduce what type T should be, substitue T with proper type
+template<typename T, int N>
+class Array
 {
-	std::cout << value << std::endl;
-}
+private:
+	int m_Array[N];
+public:
+	int GetSize() const { return N; }
+};
 
 int main()
 {
-	Print(5);
-	Print("Hello");
-	Print(5.5f);
+	Array<std::string, 50> array;
+	std::cout << array.GetSize() << std::endl;
 
 	std::cin.get();
 }

@@ -5,6 +5,7 @@
 - [Youtube](#youtube)
     - [Date: 2018-12-29](#2018-12-29)
         - [multiple projects](#multiple-projects)
+        - [Templates](#templates)
     - [Date: 2018-12-28](#2018-12-28)
         - [dynamic linking](#dynamic-linking)
     - [Date: 2018-12-27](#2018-12-27)
@@ -66,7 +67,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Welcome to C++" 
 - [x] "How to Setup C++ on Windows" 
 - [x] "How to Setup C++ on Mac" 
-- [x] "How to Setup C++ on Linux" 
+- [ ] "How to Setup C++ on Linux" 
 - [x] "How C++ Works" 
 - [x] "How the C++ Compiler Works" 
 - [x] "How the C++ Linker Works" 
@@ -115,7 +116,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Using Dynamic Libraries in C++" 
 - [x] "Making and Working with Libraries in C++ (Multiple Projects in Visual Studio)" 
 - [ ] "How to Deal with Multiple Return Values in C++" 
-- [ ] "Templates in C++" 
+- [x] "Templates in C++" 
 - [ ] "Stack vs Heap Memory in C++" 
 - [ ] "Macros in C++" 
 - [ ] "The &quot;auto&quot; keyword in C++" 
@@ -152,7 +153,14 @@ Then we can directly use existing absolute path setting as `#include"Engine.h"`
 
 Now we fix the compilation problem, but now the linking still has some issues. We first build **Engine** project, it generates **Engine.lib** file because we already set its property as **Static library (.lib)**. Then we should right click the **Game** project and add reference into it. Then the error message is gone.  
 
-If we clean the solution, and build Game. The result will look like this : first build Engine and then build Game. Because engine is actually required for game to work since we've added it as a reference and since we are linking against it. 
+If we clean the solution, and build Game. The result will look like this : first build Engine and then build Game. Because engine is actually required for game to work since we've added it as a reference and since we are linking against it.   
+
+#### Templates  
+> template does not exist until we call it
+>
+> the compiler writes code for you based on the rules that you've given it and based on the usage of that functional class or anything like that
+
+Here is a specific explanation of [templates](http://www.cplusplus.com/doc/oldtutorial/templates/).
 
 ***
 ### 2018-12-28  
