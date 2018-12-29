@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2018-12-29](#2018-12-29)
+        - [multiple projects](#multiple-projects)
     - [Date: 2018-12-28](#2018-12-28)
         - [dynamic linking](#dynamic-linking)
     - [Date: 2018-12-27](#2018-12-27)
@@ -111,7 +113,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Optimizing the usage of std::vector in C++" 
 - [x] "Using Libraries in C++ (Static Linking)" 
 - [x] "Using Dynamic Libraries in C++" 
-- [ ] "Making and Working with Libraries in C++ (Multiple Projects in Visual Studio)" 
+- [x] "Making and Working with Libraries in C++ (Multiple Projects in Visual Studio)" 
 - [ ] "How to Deal with Multiple Return Values in C++" 
 - [ ] "Templates in C++" 
 - [ ] "Stack vs Heap Memory in C++" 
@@ -136,6 +138,23 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2018-12-29  
+#### multiple projects  
+Here, we have two projects called **Game** and **Enigne**. **Game** is the main project, so we set its **Configuration Type** as **Application (.exe)**, and **Engine** as **Static library (.lib)**. That's the only difference.  
+* include another project's header file  
+One way is to use *relative path*, such as `#include"../../Engine/src/Engine.h"`  
+The other way is use *absolute path*. To achieve this, we can make some property change to *Microsoft Visual Studio*
+For example, we set **Additional Include Directories** as **$(SolutionDir)Engine\src**  
+
+Note that: In my implementation, **$(SolutionDir)** means the directory where solution file (.sln) locates. And the **$(SolutionDir)** itself has a backslash symbol (\\) at the end of path. 
+
+Then we can directly use existing absolute path setting as `#include"Engine.h"`  
+
+Now we fix the compilation problem, but now the linking still has some issues. We first build **Engine** project, it generates **Engine.lib** file because we already set its property as **Static library (.lib)**. Then we should right click the **Game** project and add reference into it. Then the error message is gone.  
+
+If we clean the solution, and build Game. The result will look like this : first build Engine and then build Game. Because engine is actually required for game to work since we've added it as a reference and since we are linking against it. 
+
+***
 ### 2018-12-28  
 * What is the difference between `#include <filename>` and `#include “filename”`?  
 > In practice, the difference is in **the location where the preprocessor searches for the included file**.
