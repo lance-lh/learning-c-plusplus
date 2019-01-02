@@ -36,7 +36,7 @@
     - [Date: 2018-12-19](#2018-12-19)
         - [Generate course list](#generate-course-list)
     - [Date: 2018-12-18](#2018-12-18)
-        - [Strings](#string)
+        - [Strings](#strings)
     - [Date: 2018-12-17](#2018-12-17)
         - [Array](#array)
         - [Visibility](#visibility)
@@ -66,7 +66,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 - [x] "Welcome to C++" 
 - [x] "How to Setup C++ on Windows" 
-- [x] "How to Setup C++ on Mac" 
+- [ ] "How to Setup C++ on Mac" 
 - [ ] "How to Setup C++ on Linux" 
 - [x] "How C++ Works" 
 - [x] "How the C++ Compiler Works" 
@@ -1264,7 +1264,7 @@ but both are the same as explained in the video.
 3. cannot modify the content, either reassign it to sth else  
 `const int* const a = new int`  
 4. `const` after a class method  
-```
+```c++
 // 3rd usage of const
 class Entity
 {
@@ -1344,17 +1344,216 @@ strings are immutable in the sense that you can't just extend a string and make 
 
 ### 2018-12-17  
 #### Array  
+Array is a bunch of variables, it stores data contiguously (row).   
+We can watch memory by enter `&variable_name`  
+
+```c++
+class Entity
+{
+public:
+	int* example = new int[5]; //&e, then copy the former 4 bytes addr, and conduct endian convertion
+
+	Entity()
+	{
+		for (int i = 0; i < 5; i++)
+			example[i] = 2;
+	}
+};
+```
+
+* created on the stack  
+`int example[5];`
+
+* created on the heap  
+`int* another = new int[5];`
+
+* delete array memory created by new  
+`delete[] another;`
+
 #### Visibility  
+Here, visibility mainly aims for `class` or `struct`.  
+The default mode for `class` is `private`, while `struct` is `public`. In fact, there are totally three modes: they are `public`, `private` and `protected`.  
+
+```c++
+public:  // all can access
+private: // none can access
+protected:  // iner class(class and its subclass can access)
+```
+
 #### Pure_virtual_func2  
+* view class diagram to see the relationship between them
+![](https://i.loli.net/2019/01/02/5c2cbe96b076b.png)
+
 #### SRO  
-- [ ] SRO1.cpp
-- [ ] SRO2.cpp
-- [ ] SRO3.cpp
-- [ ] SRO4.cpp
+SRO means **scope resolution operator**  
+- [x] SRO1.cpp  
+we can access a global variable  
+```c++
+int x; // Global x 
+
+int main()
+{
+	int x = 10; // Local x 
+	cout << "Value of global x is " << ::x;
+	cout << "\nValue of local x is " << x;
+	cin.get();
+	return 0;
+}
+```
+- [x] SRO2.cpp  
+```c++
+class A
+{
+public:
+	// Only declaration 
+	void fun();
+};
+
+// Definition outside class using :: 
+void A::fun()
+{
+	cout << "fun() called";
+}
+
+int main()
+{
+	A a;
+	a.fun();
+	cin.get();
+	return 0;
+}
+```
+- [x] SRO3.cpp  
+* :: can be used to access static, members when there is a local variable with same name   
+```c++
+class Test
+{
+	static int x;
+public:
+	static int y;
+	// Local parameter 'a' hides class member 
+	// 'a', but we can access it using :: 
+	void func(int x)
+	{
+		// We can access class's static variable 
+		// even if there is a local variable 
+		cout << "Value of static x is " << Test::x;   //line 26
+
+		cout << "\nValue of local x is " << x;  // line 32
+	}
+};
+
+// In C++, static members must be explicitly defined 
+// like this 
+int Test::x = 1;
+int Test::y = 2;
+
+int main()
+{
+	Test obj;
+	int x = 3;
+	obj.func(x);
+
+	cout << "\nTest::y = " << Test::y;  // line 27
+
+	return 0;
+}
+```
+- [x] SRO4.cpp  
+* Use of scope resolution operator in multiple inheritance.   
+```c++
+class A
+{
+protected:
+	int x;
+public:
+	A() { x = 10; }
+};
+
+class B
+{
+protected:
+	int x;
+public:
+	B() { x = 20; }
+};
+
+class C : public A, public B
+{
+public:
+	void fun()
+	{
+		cout << "A's x is " << A::x;
+		cout << "\nB's x is " << B::x;
+	}
+};
+
+int main()
+{
+	C c;
+	c.fun();
+	return 0;
+}
+```
 
 #### Pure_virtual_func  
+* indicate a pure virtual func, it has to be implemented in a subclass  
+  `virtual std::string GetName() = 0; `
+
+```c++
+#include<iostream>
+#include<string>
+
+class Entity
+{
+public:
+	virtual std::string GetName() = 0; 
+};
+
+class Player : public Entity
+{
+private:
+	std::string m_Name;
+public:
+	Player(const std::string& name)  // constructor
+		: m_Name(name) {}
+
+	std::string GetName() override   //subclass implement pure virtual function.
+	{
+		return m_Name;
+	}
+};
+
+void PrintName(Entity* entity)  // depend on type, here is Entity*
+{
+	std::cout << entity->GetName() << std::endl;
+}
+
+int main()
+{
+	// use new to ctreate and initialize object with dynamic storage duration
+	Entity* e = new Player("");
+	PrintName(e); // output Entity
+
+	Player* p = new Player("Cherno");
+	PrintName(p);  //output Entity
+
+	std::cin.get();
+}
+```
 ####  Virtual_func  
+* use virtual to not overwrite subclass method  
+  `virtual std::string GetName()`
+
 ####  Inheritance  
+* Player is not only a class type, but also an Entity type  
+```c++
+class Entity 
+{}
+
+class Player : public Entity
+{}
+```
 
 ***
 
