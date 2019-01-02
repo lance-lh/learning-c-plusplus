@@ -1559,8 +1559,64 @@ class Player : public Entity
 
 ### 2018-12-16  
 ####  Constructor  
+```c++
+// constructor and deconstructor
+#include<iostream>
+
+class Entity
+{
+public:
+	float X, Y;
+	//in fact, it has default initialization, but it would be better to manually initialize it.
+	Entity()   // define a constructor to help initialize
+	{
+		X = 0.0f;
+		Y = 0.0f;
+		std::cout << "Created Entity!" << std::endl;
+	}
+
+	~Entity()
+	{
+		std::cout << "Destroyed Entity!" << std::endl;
+	}
+    
+	void Print()
+	{
+		std::cout << X << ", " << Y << std::endl;
+	}
+
+};
+
+void Function()
+{
+	Entity e;
+	e.Print();
+	e.~Entity();
+}
+
+int main()
+{
+	Function();
+	std::cin.get();
+}
+```
 #### Log1  
+This code is related to **Main11.cpp**, it defines an `enum` class. 
 ####  Enum  
+* enum, just give names to certain values  
+```c++
+enum Example : char
+{
+	A = 5, B, C = 8  // default enum is 32-bit 
+};
+
+int main()
+{
+	Example value = B;
+	if (value == 1) {}
+	std::cin.get();
+}
+```
 
 ***
 
