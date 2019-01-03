@@ -738,7 +738,7 @@ int  main()
 
 - [C++ this Pointer](https://www.tutorialspoint.com/cplusplus/cpp_this_pointer.htm)  
 
-> Every object in C++ has access to its own address through an important pointer called **this**pointer. The **this** pointer is an implicit parameter to all member functions. Therefore, inside a member function, this may be used to refer to the invoking object.
+> Every object in C++ has access to its own address through an important pointer called **this** pointer. The **this** pointer is an implicit parameter to all member functions. Therefore, inside a member function, **this** may be used to refer to the invoking object.
 
 > Friend functions do not have a **this** pointer, because friends are not members of a class. Only member functions have a **this** pointer.
 
@@ -1646,21 +1646,77 @@ int main()
 - [ ] Main1.cpp
 - [ ] Log.cpp
 - [ ] Main.cpp
-- [ ] log.h
+- [x] log.h  
+* just place a declaration  
+`void Log(const char* message);`
 - [ ] func1.cpp
 
 ***
 
 ### 2018-12-12  
-- [ ] variables.cpp
-- [ ] size_range.cpp
-- [ ] Mathforfunc.cpp
-- [ ] varia.cpp
-- [ ] Math.cpp
-- [ ] printsh.cpp
-- [ ] endofbrace.h
-- [ ] hello.cpp
-- [ ] this_demo.cpp
-- [ ] func_with_multiple_paras.cpp
-- [ ] func_with_para.cpp
-- [ ] func_test.cpp
+- [x] variables.cpp  
+* data types determine the output.  
+```c++
+    char a = 65;
+    short b = 65;
+    char A = 'A';
+    short B = 'A';
+
+    cout << a << endl; //A
+    cout << b << endl; //65
+    cout << A << endl; //A
+    cout << B << endl; //65
+```
+- [x] size_range.cpp  
+We can use `sizeof` to know how big a data type is. for example, `sizeof(int)`  
+And in C++, `INT_MAX` and `INT_MIN` indicate the biggest and smallest int data. We can include `#include<limits.h>` to see the `int` range.
+- [x] Mathforfunc.cpp
+- [x] varia.cpp  
+* multiple data types  
+```c++
+	float variable = 5.6f;  // type int has 4 bytes
+	double var = 2.5;
+	
+	int a;
+	int* star = nullptr;  //define a pointer
+	int& moon = a;  // define a reference
+```
+- [x] Math.cpp
+- [x] printsh.cpp  
+```c++
+#include <iostream>
+using namespace std;
+#include "log.h"
+
+void InitLog()
+{
+	Log("Initialized Log");
+}
+
+void Log(const char* msg)
+{
+	std::cout << msg << std::endl;
+}
+```
+- [x] endofbrace.h  
+Here to demonstrate the usage of header file: just to copy and paste.  
+- [x] hello.cpp
+- [x] this_demo.cpp  
+`this` is a pointer, and it allows us to have access to class member function via `->`.
+- [x] func_with_multiple_paras.cpp  
+```c++
+int addnums(int x, int y) {
+	int ans = x + y;
+	return ans;
+}
+
+int main() {
+	cout << "The sum of two intergers are: " << addnums(6, 8) << endl;
+	system("pause");
+	return 0;
+}
+```
+- [x] func_with_para.cpp
+- [x] func_test.cpp  
+function declaration first, then define function.  
+**declaration -> call -> definition**
