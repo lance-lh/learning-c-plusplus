@@ -1638,18 +1638,113 @@ int main()
 ***
 
 ### 2018-12-13  
-- [ ] Main6.cpp
-- [ ] Main5.cpp
-- [ ] Main4.cpp
-- [ ] Main3.cpp
-- [ ] Main2.cpp
-- [ ] Main1.cpp
-- [ ] Log.cpp
-- [ ] Main.cpp
+- [x] Main6.cpp  
+`retrun` a value or terminate the execution of a func  
+```c++
+int main()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		if ((i + 1) % 2 == 0) // if (i % 2 != 0)
+			return 0;  // jump to int main() 2nd curly brace
+		Log("Hello World!");
+		std::cout << i << std::endl;
+	}
+	std::cin.get();
+}
+```
+- [x] Main5.cpp  
+* `break`, quit the current loop  
+```c++
+int main()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		if ((i + 1) % 2 == 0) // if (i % 2 != 0)
+			break; // if the first odd i appears, quit the whole loop
+		Log("Hello World!");
+		std::cout << i << std::endl;
+	}
+	std::cin.get();
+}
+```
+- [x] Main4.cpp  
+* `continue`, go to next loop condition  
+```c++
+int main()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		if (i % 2) // if (i % 2 != 0)
+			continue; // when i = 1,3, run continue and go to next loop that is, neglect Log() 
+		Log("Hello World!");
+		std::cout << i << std::endl;
+	}
+	std::cin.get();
+}
+```
+- [x] Main3.cpp  
+```c++
+// while loop (just one condition)
+
+#include<iostream>
+#include"log.h"
+
+int main()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		Log("Hello World!");
+	}
+
+	Log("=========================="); //just to seperate
+
+	int i = 0;
+	while (i < 5)
+	{
+		Log("Hello World!");
+		i++;
+	}
+
+	Log("=========================="); //just to seperate
+
+	i = 0;  // not int i = 0; or it will reprt error
+			// redefinition: multiple initialization
+	do
+	{
+		Log("Hello World!");
+		i++;
+	} while (i < 5);
+
+	std::cin.get();
+}
+```
+- [x] Main2.cpp  
+```c++
+	int i = 0; //first declaration, since it only runs one time
+	bool condition = true;
+	for( ;condition; )
+	{
+		Log("Hello World!");
+		i++;
+		if (i > 4)
+			condition = false;
+	}
+```
+- [x] Main1.cpp
+- [x] Log.cpp
+- [x] Main.cpp
 - [x] log.h  
 * just place a declaration  
 `void Log(const char* message);`
-- [ ] func1.cpp
+- [x] func1.cpp  
+```c++
+void MultiplyAndLog(int a, int b)
+{
+    int answer = a * b;
+    cout << answer << endl;
+}
+```
 
 ***
 
