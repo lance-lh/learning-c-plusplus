@@ -1631,9 +1631,29 @@ int main()
 ***
 
 ### 2018-12-14  
-- [ ] Main9.cpp
-- [ ] Main7.cpp
-- [ ] Main8.cpp
+- [x] Main9.cpp  
+`int& ref = a;`  
+`reference` is an alias name of `a`, only one variable when compiling, that is `a`.  
+- [x] Main7.cpp  
+* `#define LOG(x) std::cout << x << std::endl;`  
+* This code demonstrates how to watch memory in *Visual Studio* and endian problem.  
+* `memset`  
+`void * memset ( void * ptr, int value, size_t num );`  
+**fill block of memory**, Sets the first *num* bytes of the block of memory pointed by *ptr* to the specified *value* (interpreted as an `unsigned char`).  
+- [x] Main8.cpp  
+* set breakpoint to identify the endian mode is big endian or not, this code validates our machine is based on little-endian  
+```c++
+int main()
+{
+	int a = 0x1234; // normally 12 is high byte
+	char b = *(char *)&a;  //convert int to one byte char, that is, fetch low addr and put it into b as if condition
+	if (b == 0x12)   // dec 52 -> hex 34
+		return true;
+	else
+		return false;
+	std::cin.get();
+}
+```
 
 ***
 
