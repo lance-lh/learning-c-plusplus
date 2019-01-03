@@ -1621,12 +1621,17 @@ int main()
 ***
 
 ### 2018-12-15  
-- [ ] Main14.cpp
-- [ ] Main13.cpp
-- [ ] Staticcpp.cpp
-- [ ] Main12.cpp
-- [ ] Main11.cpp
-- [ ] Main10.cpp
+- [x] Main14.cpp  
+local static  
+- [x] Main13.cpp  
+`static` for classes and structs  
+- [x] Staticcpp.cpp
+- [x] Main12.cpp
+related to **Staticcpp.cpp**
+- [x] Main11.cpp  
+**error, warning and info class**  
+- [x] Main10.cpp  
+**class**
 
 ***
 
