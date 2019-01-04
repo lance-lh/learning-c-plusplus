@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Pure_virtual_func2.cpp">
+    <ClCompile Include="Stack_vs_heap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
