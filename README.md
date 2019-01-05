@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2019-1-5](#2019-1-5)
+        - [macros](#macros)
     - [Date: 2019-1-4](#2019-1-4)
         - [stack vs heap](#stack-vs-heap)
     - [Date: 2018-12-29](#2018-12-29)
@@ -120,7 +122,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [ ] "How to Deal with Multiple Return Values in C++" 
 - [x] "Templates in C++" 
 - [x] "Stack vs Heap Memory in C++" 
-- [ ] "Macros in C++" 
+- [x] "Macros in C++" 
 - [ ] "The &quot;auto&quot; keyword in C++" 
 - [ ] "Static Arrays in C++ (std::array)" 
 - [ ] "Function Pointers in C++" 
@@ -141,6 +143,41 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2019-1-5  
+#### macros  
+> simply to say, macro is just to find/replace  
+
+```c++
+#define WAIT std::cin.get()
+
+#define LOG(x) std::cout << x << std::endl;
+
+int main()
+{
+	LOG("hello");
+	WAIT;
+}
+```
+
+`#define WAIT std::cin.get()` it is not suggested to use preprocessor this way, because if the code is in other file, it may be confusing to know what it exactly means.  
+
+> Visual Studio projects have separate release and debug configurations for your program. You build the debug version for debugging and the release version for the final release distribution.
+>
+> In debug configuration, your program compiles with full symbolic debug information and no optimization. Optimization complicates debugging, because the relationship between source code and generated instructions is more complex.
+>
+> The release configuration of your program has no symbolic debug information and is fully optimized. Debug information can be generated in .pdb files, depending on the compiler options that are used. Creating .pdb files can be useful if you later have to debug your release version.
+> [link here](https://docs.microsoft.com/en-us/visualstudio/debugger/how-to-set-debug-and-release-configurations?view=vs-2017#BKMK_symbols_release)   
+
+> Well, it depends on what language you are using, but in general they are 2 separate configurations, each with its own settings. By default, Debug includes debug information in the compiled files (allowing easy debugging) while Release usually has optimizations enabled.
+>
+> As far as conditional compilation goes, they each define different symbols that can be checked in your program, but they are language-specific macros.
+> 
+> In general, though, you'll use "Debug" when you want your project to be built with the optimiser turned off, and when you want full debugging/symbol information included in your build (in the .PDB file, usually). You'll use "Release" when you want the optimiser turned on, and when you don't want full debugging information included.
+> [link here](https://stackoverflow.com/questions/933739/what-is-the-difference-between-release-and-debug-modes-in-visual-studio)  
+
+
+
+***
 ### 2019-1-4  
 #### stack vs heap  
 > to be clear, each program/process on our computer has its own stack/heap
@@ -187,12 +224,12 @@ int main()
 	harray[2] = 3;
 	harray[3] = 4;
 	harray[4] = 5;
-	Vector3* hvecotr = new Vector3();  // 0x00192274
+	Vector3* hvector = new Vector3();  // 0x00192274
 
 	// manully free heap memory
 	delete hvalue;
 	delete[] harray;
-	delete hvecotr;
+	delete hvector;
 
 	std::cin.get();
 }
