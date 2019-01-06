@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2019-1-6](#2019-1-6)
+        - [auto](#auto)
     - [Date: 2019-1-5](#2019-1-5)
         - [macros](#macros)
     - [Date: 2019-1-4](#2019-1-4)
@@ -123,7 +125,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Templates in C++" 
 - [x] "Stack vs Heap Memory in C++" 
 - [x] "Macros in C++" 
-- [ ] "The &quot;auto&quot; keyword in C++" 
+- [x] "The &quot;auto&quot; keyword in C++" 
 - [ ] "Static Arrays in C++ (std::array)" 
 - [ ] "Function Pointers in C++" 
 - [ ] "Lambdas in C++" 
@@ -143,6 +145,19 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2019-1-6  
+#### auto  
+> use auto if the data type is too long  
+
+*for example*,  
+`for (std::vector<std::string>::iterator it = strings.begin();it != strings.end(); it++)` vs  `for (auto it = strings.begin(); it != strings.end(); it++)`  
+> *For variables*, specifies that the type of the variable that is **being declared** will be automatically deduced from its initializer. 
+>
+> *For functions*, specifies that the **return type** is a trailing return type or will be deduced from its return statements (since C++14) 
+>
+> *For non-type template parameters*, specifies that the type will be deduced from the **argument** (since C++17). [link](https://en.cppreference.com/w/cpp/language/auto)
+
+***
 ### 2019-1-5  
 #### macros  
 > simply to say, macro is just to find/replace  
