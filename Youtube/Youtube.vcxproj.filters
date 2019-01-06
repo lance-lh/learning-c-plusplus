@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Auto.cpp">
+    <ClCompile Include="Static_array.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

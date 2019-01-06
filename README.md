@@ -5,6 +5,7 @@
 - [Youtube](#youtube)
     - [Date: 2019-1-6](#2019-1-6)
         - [auto](#auto)
+        - [static array](#static-array)
     - [Date: 2019-1-5](#2019-1-5)
         - [macros](#macros)
     - [Date: 2019-1-4](#2019-1-4)
@@ -126,7 +127,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Stack vs Heap Memory in C++" 
 - [x] "Macros in C++" 
 - [x] "The &quot;auto&quot; keyword in C++" 
-- [ ] "Static Arrays in C++ (std::array)" 
+- [x] "Static Arrays in C++ (std::array)" 
 - [ ] "Function Pointers in C++" 
 - [ ] "Lambdas in C++" 
 - [ ] "Why I don&#39;t &quot;using namespace std&quot;" 
@@ -156,6 +157,52 @@ It provides a recommended `VS` *Directory Structure* as follows:
 > *For functions*, specifies that the **return type** is a trailing return type or will be deduced from its return statements (since C++14) 
 >
 > *For non-type template parameters*, specifies that the type will be deduced from the **argument** (since C++17). [link](https://en.cppreference.com/w/cpp/language/auto)
+
+#### static array  
+> when you create a C++ standard array, it provides you a fixed size, pre-defined data type array, that's what we called static.
+> 
+> standard array is stored on the stack, while vector is stored on the heap, because vector is a changeable array, it needs heap allocation
+> 
+> standard array has boundary check for you optionally, it's up to debug or release mode you choose.  
+
+```c++
+int main()
+{
+	std::array<int, 5> data; //&data, it is a class, so we can keep track of its size
+
+	// pay attention that this size is not the real memory size it occupies
+	int arraysize = data.size();
+	std::cout << arraysize << std::endl;
+
+	data[0] = 2;
+	data[4] = 1;
+
+	std::cin.get();
+}
+```
+
+* [Static array vs. dynamic array in C++](https://stackoverflow.com/questions/2672085/static-array-vs-dynamic-array-in-c)  
+
+Here are two awesome answers about this question, I think they are easy-understood.  
+> Local arrays are created on the stack, and have automatic storage duration -- you don't need to manually manage memory, but they get destroyed when the function they're in ends. They necessarily have a fixed size:
+>
+> `int foo[10];`
+>
+> Arrays created with operator new[] have dynamic storage duration and are stored on the heap (technically the "free store"). They can have any size, but you need to allocate and free them yourself since they're not part of the stack frame:
+>
+> ```c++
+> int* foo = new int[10];
+> delete[] foo;
+> ```
+
+> I think the semantics being used in your class are confusing. What's probably meant by 'static' is simply "constant size", and what's probably meant by "dynamic" is "variable size". In that case then, a constant size array might look like this:
+>
+> `int x[10];`
+> and a "dynamic" one would just be any kind of structure that allows for the underlying storage to be increased or decreased at runtime. Most of the time, the std::vector class from the C++ standard library will suffice. Use it like this:
+>
+> `std::vector<int> x(10);` // this starts with 10 elements, but the vector can be resized.
+>
+> `std::vector` has `operator[]` defined, so you can use it with the same semantics as an array.  
 
 ***
 ### 2019-1-5  
