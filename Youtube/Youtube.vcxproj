@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Static_array.cpp" />
+    <ClCompile Include="Function_pointer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4A58CBC5-85E2-48C3-B652-914D8A3EFF08}</ProjectGuid>

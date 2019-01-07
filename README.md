@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2019-1-7](#2019-1-7)
+        - [function pointer](#function-pointer)
     - [Date: 2019-1-6](#2019-1-6)
         - [auto](#auto)
         - [static array](#static-array)
@@ -128,7 +130,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Macros in C++" 
 - [x] "The &quot;auto&quot; keyword in C++" 
 - [x] "Static Arrays in C++ (std::array)" 
-- [ ] "Function Pointers in C++" 
+- [x] "Function Pointers in C++" 
 - [ ] "Lambdas in C++" 
 - [ ] "Why I don&#39;t &quot;using namespace std&quot;" 
 - [ ] "Namespaces in C++" 
@@ -146,6 +148,47 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2019-1-7  
+#### function pointer  
+```c++
+void HelloWorld(int a)
+{
+	std::cout << "Hello World! Value: " << a << std::endl;
+}
+
+int main()
+{
+    typedef void(*HelloWorldFunction)(int);  // define a type
+    HelloWorldFunction function = HelloWorld;
+    function(8);
+    function(9);
+    function(6);
+}
+```
+
+```c++
+void PrintValue(int value)
+{
+	std::cout << "Value: " << value << std::endl;
+}
+
+void ForEach(const std::vector<int>& values, void(*func)(int))
+{
+	for (int value : values)
+		func(value);
+}
+
+int main()
+{
+	std::vector<int> values = { 1, 5, 4, 2, 3 };
+	ForEach(values, PrintValue);
+	ForEach(values, [](int value) {std::cout << "Value: " << value << std::endl; });   // lambdas
+
+	std::cin.get();
+}
+```
+
+***
 ### 2019-1-6  
 #### auto  
 > use auto if the data type is too long  
