@@ -7,6 +7,7 @@
         - [function pointer](#function-pointer)
         - [lambda](#lambda)
         - [not using namespace std](#not-using-namespace-std)
+        - [namespace](#namespace)
     - [Date: 2019-1-6](#2019-1-6)
         - [auto](#auto)
         - [static array](#static-array)
@@ -135,7 +136,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Function Pointers in C++" 
 - [x] "Lambdas in C++" 
 - [x] "Why I don&#39;t &quot;using namespace std&quot;" 
-- [ ] "Namespaces in C++" 
+- [x] "Namespaces in C++" 
 - [ ] "Threads in C++" 
 - [ ] "Timing in C++" 
 - [ ] "Multidimensional Arrays in C++ (2D arrays)" 
@@ -276,6 +277,16 @@ int main()
 	std::cin.get();
 }
 ```
+
+#### namespace  
+> Namespaces provide a method for **preventing name conflicts** in large projects.
+>
+> Symbols declared inside a namespace block are placed in a named scope that prevents them from being mistaken for identically-named symbols in other scopes.
+>
+> Multiple namespace blocks with the same name are allowed. All declarations within those blocks are declared in the named scope.  
+>
+
+* More examples can be found [here](https://www.geeksforgeeks.org/namespace-in-c/).  
 
 ***
 ### 2019-1-6  
