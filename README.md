@@ -8,6 +8,7 @@
         - [lambda](#lambda)
         - [not using namespace std](#not-using-namespace-std)
         - [namespace](#namespace)
+        - [threads](#threads)
     - [Date: 2019-1-6](#2019-1-6)
         - [auto](#auto)
         - [static array](#static-array)
@@ -137,7 +138,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Lambdas in C++" 
 - [x] "Why I don&#39;t &quot;using namespace std&quot;" 
 - [x] "Namespaces in C++" 
-- [ ] "Threads in C++" 
+- [x] "Threads in C++" 
 - [ ] "Timing in C++" 
 - [ ] "Multidimensional Arrays in C++ (2D arrays)" 
 - [ ] "Sorting in C++" 
@@ -287,6 +288,51 @@ int main()
 >
 
 * More examples can be found [here](https://www.geeksforgeeks.org/namespace-in-c/).  
+
+#### threads  
+> The class thread represents a single thread of execution. Threads allow multiple functions to execute concurrently.
+> 
+> Threads begin execution immediately upon construction of the associated thread object (pending any OS scheduling delays), starting at the top-level function provided as a constructor argument. The return value of the top-level function is ignored and if it terminates by throwing an exception, std::terminate is called. The top-level function may communicate its return value or an exception to the caller via std::promise or by modifying shared variables (which may require synchronization, see std::mutex and std::atomic)
+> 
+> std::thread objects may also be in the state that does not represent any thread (after default construction, move from, detach, or join), and a thread of execution may be not associated with any thread objects (after detach).
+> 
+> No two std::thread objects may represent the same thread of execution; std::thread is not *CopyConstructible* or *CopyAssignable*, although it is *MoveConstructible* and *MoveAssignable*. [link](https://en.cppreference.com/w/cpp/thread/thread)  
+
+```c++
+#include<iostream>
+#include<thread>
+
+static bool s_Finished = false;
+
+void DoWork()
+{
+	using namespace std::literals::chrono_literals;
+
+	std::cout << "Started thread id=" << std::this_thread::get_id() << std::endl;
+
+	while (!s_Finished)  // s_Finished = false, keep running
+	{
+		std::cout << "Working...\n";
+		std::this_thread::sleep_for(1s);
+	}
+}
+
+int main()
+{
+	std::thread worker(DoWork);
+
+	std::cin.get(); // block this thread until we press ENTER
+	s_Finished = true;  // change status, stop working
+
+	worker.join();  // we don't do cin.get() until that thread has actually finished its execution
+	std::cout << "Finished." << std::endl;
+	std::cout << "Started thread id=" << std::this_thread::get_id() << std::endl;
+
+	std::cin.get();
+}
+```
+
+* `join` waits for a thread to finish its execution  
 
 ***
 ### 2019-1-6  

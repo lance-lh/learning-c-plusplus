@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Namespaces.cpp">
+    <ClCompile Include="Threads.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
