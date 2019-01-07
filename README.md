@@ -5,6 +5,7 @@
 - [Youtube](#youtube)
     - [Date: 2019-1-7](#2019-1-7)
         - [function pointer](#function-pointer)
+        - [lambda](#lambda)
     - [Date: 2019-1-6](#2019-1-6)
         - [auto](#auto)
         - [static array](#static-array)
@@ -188,6 +189,58 @@ int main()
 }
 ```
 
+#### lambda  
+> Lambda expressions: an unnamed function object capable of capturing variables in scope. [link](https://en.cppreference.com/w/cpp/language/lambda)  
+
+```c++
+[capture list] (params list) mutable exception-> return type { function body }
+```
+
+[C++ 11 Lambda表达式](https://www.cnblogs.com/DswCnblog/p/5629165.html)
+
+| 序号 | 格式                                                         |
+| ---- | ------------------------------------------------------------ |
+| 1    | `[capture list] (params list) -> return type {function body}` |
+| 2    | `[capture list] (params list) {function body}`               |
+| 3    | `[capture list] {function body}`                             |
+
+| 捕获形式    | 说明                                                         |
+| ----------- | ------------------------------------------------------------ |
+| []          | 不捕获任何外部变量                                           |
+| [变量名, …] | 默认以值得形式捕获指定的多个外部变量（用逗号分隔），如果引用捕获，需要显示声明（使用&说明符） |
+| [this]      | 以值的形式捕获this指针                                       |
+| [=]         | 以值的形式捕获所有外部变量                                   |
+| [&]         | 以引用形式捕获所有外部变量                                   |
+| [=, &x]     | 变量x以引用形式捕获，其余变量以传值形式捕获                  |
+| [&, x]      | 变量x以值的形式捕获，其余变量以引用形式捕获                  |
+
+```c++
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<functional>
+
+void ForEach(const std::vector<int>& values, const std::function<void(int)>& func)
+{
+	for (int value : values)
+		func(value);
+}
+
+int main()
+{
+	std::vector<int> values = { 1, 5, 4, 2, 3 };
+	auto it = std::find_if(values.begin(), values.end(), [](int value) {return value > 3; });
+	std::cout << *it << std::endl;
+
+	int a = 5;
+
+	auto lambda = [=](int value) {std::cout << "Value: " << a << std::endl; };
+	ForEach(values, lambda);   
+
+	std::cin.get();
+}
+```
+
 ***
 ### 2019-1-6  
 #### auto  
@@ -195,6 +248,7 @@ int main()
 
 *for example*,  
 `for (std::vector<std::string>::iterator it = strings.begin();it != strings.end(); it++)` vs  `for (auto it = strings.begin(); it != strings.end(); it++)`  
+
 > *For variables*, specifies that the type of the variable that is **being declared** will be automatically deduced from its initializer. 
 >
 > *For functions*, specifies that the **return type** is a trailing return type or will be deduced from its return statements (since C++14) 
