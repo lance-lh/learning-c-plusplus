@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lambdas.cpp">
+    <ClCompile Include="Not_using_namespace_std.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

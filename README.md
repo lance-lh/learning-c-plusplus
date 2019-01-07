@@ -6,6 +6,7 @@
     - [Date: 2019-1-7](#2019-1-7)
         - [function pointer](#function-pointer)
         - [lambda](#lambda)
+        - [not using namespace std](#not-using-namespace-std)
     - [Date: 2019-1-6](#2019-1-6)
         - [auto](#auto)
         - [static array](#static-array)
@@ -132,8 +133,8 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "The &quot;auto&quot; keyword in C++" 
 - [x] "Static Arrays in C++ (std::array)" 
 - [x] "Function Pointers in C++" 
-- [ ] "Lambdas in C++" 
-- [ ] "Why I don&#39;t &quot;using namespace std&quot;" 
+- [x] "Lambdas in C++" 
+- [x] "Why I don&#39;t &quot;using namespace std&quot;" 
 - [ ] "Namespaces in C++" 
 - [ ] "Threads in C++" 
 - [ ] "Timing in C++" 
@@ -237,6 +238,41 @@ int main()
 	auto lambda = [=](int value) {std::cout << "Value: " << a << std::endl; };
 	ForEach(values, lambda);   
 
+	std::cin.get();
+}
+```
+
+#### not using namespace std  
+It is Cherno's personal opinion. It might be confusing if you wanna distinguish which function belongs to std library. And there is one case that you might name your function  similar to std library function name. So, try to use std `namespace` less, small scope and remember never put `namespace` into header file because it is tough to debug your code.  
+
+```c++
+#include<iostream>
+#include<string>
+
+namespace apple    // it needs implicit conversion
+{
+	void print(const std::string& text)
+	{
+		std::cout << text << std::endl;
+	}
+}
+
+namespace orrange   // if both exist, this one is a better choice
+{
+	void print(const char* text)
+	{
+		std::string temp = text;
+		std::reverse(temp.begin(), temp.end());
+		std::cout << temp << std::endl;
+	}
+}
+
+using namespace apple;
+using namespace orrange;
+
+int main()
+{
+	print("Hello!");  // "Hello" is a const char array, actually not string
 	std::cin.get();
 }
 ```
