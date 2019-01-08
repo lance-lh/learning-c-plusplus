@@ -5,6 +5,7 @@
 - [Youtube](#youtube)
     - [Date: 2019-1-8](#2019-1-8)
         - [timing](#timing)
+        - [multidimensional arrays](#multidimensional-arrays)
     - [Date: 2019-1-7](#2019-1-7)
         - [function pointer](#function-pointer)
         - [lambda](#lambda)
@@ -142,7 +143,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Namespaces in C++" 
 - [x] "Threads in C++" 
 - [x] "Timing in C++" 
-- [ ] "Multidimensional Arrays in C++ (2D arrays)" 
+- [x] "Multidimensional Arrays in C++ (2D arrays)" 
 - [ ] "Sorting in C++" 
 - [ ] "Type Punning in C++" 
 - [ ] "Unions in C++" 
@@ -167,10 +168,12 @@ It provides a recommended `VS` *Directory Structure* as follows:
 > The chrono library defines three main types as well as utility functions and common typedefs.
 >
 > * clocks
->
 > * time points
->
 > * durations
+> 
+> [link](https://en.cppreference.com/w/cpp/chrono)  
+
+
 ```c++
 #include<iostream>
 #include<chrono>
@@ -222,6 +225,47 @@ int main()
 ```
 
 * It is a smart way to set timer into struct. To start timer, constructor is a good choice and destructor for end timer.
+
+#### multidimensional arrays  
+```c++
+#include<iostream>
+
+int main()
+{
+	int* array = new int[50];  // anchor 3
+
+	int** a2d = new int*[50];// anchor2
+
+	for (int i = 0; i < 50; i++)
+		a2d[i] = new int[50]; // anchor1
+
+	a2d[0][0] = 0;
+	a2d[0][1] = 0;
+	a2d[0][2] = 0;
+
+	for (int i = 0; i < 50; i++)
+		delete[] a2d[i];  // release anchor1 memory 
+	delete[] a2d; // release anchor2 memory
+
+	int*** a3d = new int**[50];
+	for (int i = 0; i < 50; i++)
+	{
+		a3d[i] = new int*[50];
+		for (int j = 0; j < 50; j++)
+		{
+			int** ptr = a3d[i];
+			ptr[j] = new int[50];
+		}	
+	}
+
+	std::cin.get();
+}
+```
+
+* storing an image in a one-dimensional way is optimal  
+* anchor 3 : heap allocation, it doesn't matter with this integer, what we've done here is allocating 200 bytes of memory. we could then proceed to use this integer to store floats  
+* anchor 1 :  we essentially allocated 50 arrays and the location of each one of those arrays is stored in this a2d array  
+* anchor 2 :  a buffer of pointer objects, a pointer to a collection of pointers. we got a pointer to an integer pointer. here, also allocate 200 bytes of memory. we have room to store 200 bytes worth of pointers so 50 pointers, we can go through and set each of those pointers to point to an array and that way we actually end up with is 50 arrays
 
 ***
 ### 2019-1-7  
