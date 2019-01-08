@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Threads.cpp">
+    <ClCompile Include="Timing.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

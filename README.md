@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2019-1-8](#2019-1-8)
+        - [timing](#timing)
     - [Date: 2019-1-7](#2019-1-7)
         - [function pointer](#function-pointer)
         - [lambda](#lambda)
@@ -139,7 +141,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Why I don&#39;t &quot;using namespace std&quot;" 
 - [x] "Namespaces in C++" 
 - [x] "Threads in C++" 
-- [ ] "Timing in C++" 
+- [x] "Timing in C++" 
 - [ ] "Multidimensional Arrays in C++ (2D arrays)" 
 - [ ] "Sorting in C++" 
 - [ ] "Type Punning in C++" 
@@ -152,6 +154,76 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2019-1-8  
+#### timing  
+> C++ includes support for two types of time manipulation:
+>
+> * The chrono library, a flexible collection of types that track time with varying degrees of precision (e.g. `std::chrono::time_point`).
+>
+> * C-style date and time library (e.g. `std::time`)
+>   **std::chrono library**
+>
+>
+> The chrono library defines three main types as well as utility functions and common typedefs.
+>
+> * clocks
+>
+> * time points
+>
+> * durations
+```c++
+#include<iostream>
+#include<chrono>
+#include<thread>
+
+struct Timer
+{
+	std::chrono::time_point<std::chrono::steady_clock> start, end;
+	std::chrono::duration<float> duration;
+
+	Timer()
+	{
+		start = std::chrono::high_resolution_clock::now();
+	}
+
+	~Timer()
+	{
+		end = std::chrono::high_resolution_clock::now();
+		duration = end - start;
+
+		float ms = duration.count() * 1000.0f;
+		std::cout << "Timer took " << ms << "ms" << std::endl;
+	}
+};
+
+void Function()
+{
+	Timer timer;
+	for (int i = 0; i < 100; i++)
+		//std::cout << "Hello" << std::endl;  //42.8024ms
+		std::cout << "Hello\n";  //18.9782ms
+}
+
+int main()
+{
+	Function();
+	
+	/*using namespace std::literals::chrono_literals;
+
+	auto start = std::chrono::high_resolution_clock::now();
+	std::this_thread::sleep_for(1s);
+	auto end = std::chrono::high_resolution_clock::now();
+
+	std::chrono::duration<float> duration = end - start;
+	std::cout << duration.count() << std::endl;*/
+
+	std::cin.get();
+}
+```
+
+* It is a smart way to set timer into struct. To start timer, constructor is a good choice and destructor for end timer.
+
+***
 ### 2019-1-7  
 #### function pointer  
 ```c++
