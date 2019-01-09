@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2019-1-9](#2019-1-9)
+        - [sorting](#sorting)
     - [Date: 2019-1-8](#2019-1-8)
         - [timing](#timing)
         - [multidimensional arrays](#multidimensional-arrays)
@@ -144,7 +146,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Threads in C++" 
 - [x] "Timing in C++" 
 - [x] "Multidimensional Arrays in C++ (2D arrays)" 
-- [ ] "Sorting in C++" 
+- [x] "Sorting in C++" 
 - [ ] "Type Punning in C++" 
 - [ ] "Unions in C++" 
 - [ ] "Virtual Destructors in C++" 
@@ -155,6 +157,48 @@ It provides a recommended `VS` *Directory Structure* as follows:
 
 </details> 
 
+### 2019-1-9  
+#### sorting  
+> `std::sort` defined in header `<algorithm>`. Complexity: `O(N·log(N))`. Here is a specific explanation about [standard sorting](https://en.cppreference.com/w/cpp/algorithm/sort) in C++.   
+
+```c++
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<functional>
+
+int main()
+{
+	std::vector<int> values = { 3,5,1,4,2 };
+	//***********************************************
+	std::sort(values.begin(), values.end()); // ascending order, sort using the default operator<
+
+	for (int value : values)
+		std::cout << value << ' ';
+	std::cout << '\n';
+	
+	//***********************************************
+	std::sort(values.begin(), values.end(), std::greater<int>()); // descending order, sort using a standard library compare function object
+
+	for (int value : values)
+		std::cout << value << ' ';
+	std::cout << '\n';
+	
+	//***********************************************
+	std::sort(values.begin(), values.end(), [](int a, int b)
+	{
+		return a < b;
+	}); // ascending order, sort using lambda
+
+	for (int value : values)
+		std::cout << value << ' ';
+	std::cout << '\n';
+
+	std::cin.get();
+}
+```
+
+***
 ### 2019-1-8  
 #### timing  
 > C++ includes support for two types of time manipulation:
