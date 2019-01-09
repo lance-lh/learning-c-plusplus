@@ -6,6 +6,7 @@
     - [Date: 2019-1-9](#2019-1-9)
         - [sorting](#sorting)
         - [type punning](#type-punning)
+        - [union](#union)
     - [Date: 2019-1-8](#2019-1-8)
         - [timing](#timing)
         - [multidimensional arrays](#multidimensional-arrays)
@@ -149,7 +150,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Multidimensional Arrays in C++ (2D arrays)" 
 - [x] "Sorting in C++" 
 - [x] "Type Punning in C++" 
-- [ ] "Unions in C++" 
+- [x] "Unions in C++" 
 - [ ] "Virtual Destructors in C++" 
 - [ ] "Casting in C++" 
 - [ ] "Conditional and Action Breakpoints in C++" 
@@ -230,6 +231,74 @@ int main()
 	std::cin.get();
 }
 ```
+
+#### union
+* [Purpose of Unions in C and C++](https://stackoverflow.com/questions/2310483/purpose-of-unions-in-c-and-c)  
+> The purpose of unions is rather obvious, but for some reason people miss it quite often.
+>
+> **The purpose of union is to save memory by using the same memory region for storing different objects at different times.** That's it.
+>
+> It is like a room in a hotel. Different people live in it for non-overlapping periods of time. These people never meet, and generally don't know anything about each other. By properly managing the time-sharing of the rooms (i.e. by making sure different people don't get assigned to one room at the same time), a relatively small hotel can provide accommodations to a relatively large number of people, which is what hotels are for.
+>
+> That's exactly what union does. If you know that **several objects in your program hold values with non-overlapping value-lifetimes**, then you can **"merge" these objects into a union and thus save memory**. Just like a hotel room has at most one "active" tenant at each moment of time, a union has at most one "active" member at each moment of program time. **Only the "active" member can be read**. By writing into other member you switch the "active" status to that other member.
+>
+> For some reason, this original purpose of the union got "overriden" with something completely different: writing one member of a union and then inspecting it through another member. This kind of memory *reinterpretation* (aka "**type punning**") is ~~not a valid use of unions. It generally leads to undefined behavior~~ is decribed as producing implemenation-defined behavior in C89/90.
+>
+> **EDIT: **Using unions for the purposes of type punning (i.e. writing one member and then reading another) was given a more detailed definition in one of the Technical Corrigendums to C99 standard (see DR#257 and DR#283). However, keep in mind that formally this does not protect you from running into undefined behavior by attempting to read a trap representation.
+
+
+* union is like class or struct, a union can only have one member  
+
+```c++
+struct Vector2
+{
+	float x, y;
+};
+
+struct Vector4
+{
+	union
+	{
+		struct
+		{
+			float x, y, z, w;
+		};
+		struct
+		{
+			Vector2 a, b;
+		};
+	};
+};
+
+void PrintVector2(const Vector2& vector)
+{
+	std::cout << vector.x << ", " << vector.y << std::endl;
+}
+
+int main()
+{
+	Vector4 vector = { 1.0f, 2.0f, 3.0f, 4.0f };
+	PrintVector2(vector.a);
+	PrintVector2(vector.b);
+	vector.z = 500.0f;
+	std::cout << "-----------" << std::endl;
+	PrintVector2(vector.a);
+	PrintVector2(vector.b);
+
+	std::cin.get();
+}
+```
+
+**result:**  
+```c++
+1, 2
+3, 4
+-----------
+1, 2
+500, 4
+```
+
+* [C++中union结构](https://blog.csdn.net/xiajun07061225/article/details/7295355)
 
 ***
 ### 2019-1-8  
