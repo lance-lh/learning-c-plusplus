@@ -7,6 +7,7 @@
         - [sorting](#sorting)
         - [type punning](#type-punning)
         - [union](#union)
+        - [virtual destructor](#virtual-destructor)
     - [Date: 2019-1-8](#2019-1-8)
         - [timing](#timing)
         - [multidimensional arrays](#multidimensional-arrays)
@@ -151,7 +152,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Sorting in C++" 
 - [x] "Type Punning in C++" 
 - [x] "Unions in C++" 
-- [ ] "Virtual Destructors in C++" 
+- [x] "Virtual Destructors in C++" 
 - [ ] "Casting in C++" 
 - [ ] "Conditional and Action Breakpoints in C++" 
 - [ ] "Safety in modern C++ and how to teach it" 
@@ -244,7 +245,7 @@ int main()
 >
 > For some reason, this original purpose of the union got "overriden" with something completely different: writing one member of a union and then inspecting it through another member. This kind of memory *reinterpretation* (aka "**type punning**") is ~~not a valid use of unions. It generally leads to undefined behavior~~ is decribed as producing implemenation-defined behavior in C89/90.
 >
-> **EDIT: **Using unions for the purposes of type punning (i.e. writing one member and then reading another) was given a more detailed definition in one of the Technical Corrigendums to C99 standard (see DR#257 and DR#283). However, keep in mind that formally this does not protect you from running into undefined behavior by attempting to read a trap representation.
+> **EDIT: ** Using unions for the purposes of type punning (i.e. writing one member and then reading another) was given a more detailed definition in one of the Technical Corrigendums to C99 standard (see DR#257 and DR#283). However, keep in mind that formally this does not protect you from running into undefined behavior by attempting to read a trap representation.
 
 
 * union is like class or struct, a union can only have one member  
@@ -298,7 +299,117 @@ int main()
 500, 4
 ```
 
-* [C++中union结构](https://blog.csdn.net/xiajun07061225/article/details/7295355)
+* [C++中union结构](https://blog.csdn.net/xiajun07061225/article/details/7295355)  
+
+#### virtual destructor  
+* whenever you are writing a class that you will be extending or that might be subclass whenever you're basically permitting a class to be subclass, you need to 100% declare your destructor as virtual.  
+```c++
+#include<iostream>
+
+class Base
+{
+public:
+	Base() { std::cout << "Base Constructor\n"; }
+	virtual ~Base() { std::cout << "Base Destructor\n"; }
+};
+
+class Derived : public Base
+{
+public:
+	Derived() { m_Array = new int[5]; std::cout << "Derived Constructor\n"; }
+	~Derived() { delete[] m_Array; std::cout << "Derived Destructor\n"; }
+private:
+	int* m_Array;
+};
+
+
+int main()
+{
+	Base* base = new Base();
+	delete base;
+	std::cout << "--------------\n";
+	Derived* derived = new Derived();
+	delete derived;
+	std::cout << "--------------\n";
+	Base* poly = new Derived();
+	delete poly; // which causes a memory leak, because Derived Destructor is not called, that' s why we need virtual destructor 
+
+
+	std::cin.get();
+}
+```
+
+**results (no virtutal) :**  
+
+```c++
+Base Constructor
+Base Destructor
+--------------
+Base Constructor
+Derived Constructor
+Derived Destructor
+Base Destructor
+--------------
+Base Constructor
+Derived Constructor
+Base Destructor
+```
+
+**results (virtutal) :**  
+
+```c++
+Base Constructor
+Base Destructor
+--------------
+Base Constructor
+Derived Constructor
+Derived Destructor
+Base Destructor
+--------------
+Base Constructor
+Derived Constructor
+Derived Destructor
+Base Destructor
+```
+
+* [When to use virtual destructors?](https://stackoverflow.com/questions/461203/when-to-use-virtual-destructors)  
+
+> Virtual destructors are useful when you might potentially delete an instance of a derived class through a pointer to base class:
+>
+> ```c++
+> class Base 
+> {
+>     // some virtual methods
+> };
+> 
+> class Derived : public Base
+> {
+>     ~Derived()
+>     {
+>         // Do some important cleanup
+>     }
+> };
+> ```
+>
+> Here, you'll notice that I didn't declare Base's destructor to be `virtual`. Now, let's have a look at the following snippet:
+>
+> ```c++
+> Base *b = new Derived();
+> // use b
+> delete b; // Here's the problem!
+> ```
+>
+> Since Base's destructor is not `virtual` and `b` is a `Base*` pointing to a `Derived` object, `delete b` has [undefined behaviour](https://stackoverflow.com/questions/2397984/undefined-unspecified-and-implementation-defined-behavior):
+>
+> [In `delete b`], if the static type of the object to be deleted is different from its dynamic type, the static type shall be a base class of the dynamic type of the object to be deleted and **the static type shall have a virtual destructor or the behavior is undefined.**
+>
+> In most implementations, the call to the destructor will be resolved like any non-virtual code, meaning that the destructor of the base class will be called but not the one of the derived class, resulting in a resources leak.
+>
+> To sum up, always make base classes' destructors `virtual` when they're meant to be manipulated polymorphically.
+>
+> If you want to prevent the deletion of an instance through a base class pointer, you can make the base class destructor protected and nonvirtual; by doing so, the compiler won't let you call `delete` on a base class pointer.
+>
+> You can learn more about virtuality and virtual base class destructor in [this article from Herb Sutter](http://www.gotw.ca/publications/mill18.htm).
 
 ***
 ### 2019-1-8  
@@ -320,26 +431,26 @@ int main()
 > [link](https://en.cppreference.com/w/cpp/chrono)  
 
 
-```c++
+​```c++
 #include<iostream>
 #include<chrono>
 #include<thread>
 
 struct Timer
 {
-	std::chrono::time_point<std::chrono::steady_clock> start, end;
-	std::chrono::duration<float> duration;
+​	std::chrono::time_point<std::chrono::steady_clock> start, end;
+​	std::chrono::duration<float> duration;
 
 	Timer()
 	{
 		start = std::chrono::high_resolution_clock::now();
 	}
-
+	
 	~Timer()
 	{
 		end = std::chrono::high_resolution_clock::now();
 		duration = end - start;
-
+	
 		float ms = duration.count() * 1000.0f;
 		std::cout << "Timer took " << ms << "ms" << std::endl;
 	}
@@ -347,25 +458,25 @@ struct Timer
 
 void Function()
 {
-	Timer timer;
-	for (int i = 0; i < 100; i++)
-		//std::cout << "Hello" << std::endl;  //42.8024ms
-		std::cout << "Hello\n";  //18.9782ms
+​	Timer timer;
+​	for (int i = 0; i < 100; i++)
+​		//std::cout << "Hello" << std::endl;  //42.8024ms
+​		std::cout << "Hello\n";  //18.9782ms
 }
 
 int main()
 {
-	Function();
-	
-	/*using namespace std::literals::chrono_literals;
-
+​	Function();
+​	
+​	/*using namespace std::literals::chrono_literals;
+​	
 	auto start = std::chrono::high_resolution_clock::now();
 	std::this_thread::sleep_for(1s);
 	auto end = std::chrono::high_resolution_clock::now();
-
+	
 	std::chrono::duration<float> duration = end - start;
 	std::cout << duration.count() << std::endl;*/
-
+	
 	std::cin.get();
 }
 ```
@@ -373,7 +484,7 @@ int main()
 * It is a smart way to set timer into struct. To start timer, constructor is a good choice and destructor for end timer.
 
 #### multidimensional arrays  
-```c++
+​```c++
 #include<iostream>
 
 int main()
