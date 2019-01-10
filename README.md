@@ -1,6 +1,88 @@
-# learning C++
+# learning C++  
+Thanks for [Cherno's C++ series](https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb). It actually helps me a lot. This series not only helps me learn how C++ works, but also improves my English level. Cherno speeks so fast, firstly I have to learn it by subtitles, then I try to just listen and Markdown, but I still miss some information. So for some vital stuff, I have to listen it two or three times. As the consequence,  it helps me understand it deeply and improve my poor English.  
 
-## Contents
+I try to use *python crawler* and *Regular expression* to obtain the **course list** as follows:  
+
+<details>
+<summary>course list</summary>  
+
+- [x] "Welcome to C++" 
+- [x] "How to Setup C++ on Windows" 
+- [ ] "How to Setup C++ on Mac" 
+- [ ] "How to Setup C++ on Linux" 
+- [x] "How C++ Works" 
+- [x] "How the C++ Compiler Works" 
+- [x] "How the C++ Linker Works" 
+- [x] "Variables in C++" 
+- [x] "Functions in C++" 
+- [x] "C++ Header Files" 
+- [x] "How to DEBUG C++ in VISUAL STUDIO" 
+- [x] "CONDITIONS and BRANCHES in C++ (if statements)" 
+- [x] "BEST Visual Studio Setup for C++ Projects!" 
+- [x] "Loops in C++ (for loops, while loops)" 
+- [x] "Control Flow in C++ (continue, break, return)" 
+- [x] "POINTERS in C++" 
+- [x] "REFERENCES in C++" 
+- [x] "CLASSES in C++" 
+- [x] "CLASSES vs STRUCTS in C++" 
+- [x] "How to Write a C++ Class" 
+- [x] "Static in C++" 
+- [x] "Static for Classes and Structs in C++" 
+- [x] "Local Static in C++" 
+- [x] "ENUMS in C++" 
+- [x] "Constructors in C++" 
+- [x] "Destructors in C++" 
+- [x] "Inheritance in C++" 
+- [x] "Virtual Functions in C++" 
+- [x] "Interfaces in C++ (Pure Virtual Functions)" 
+- [x] "Visibility in C++" 
+- [x] "Arrays in C++" 
+- [x] "How Strings Work in C++ (and how to use them)" 
+- [x] "String Literals in C++" 
+- [x] "CONST in C++" 
+- [x] "The Mutable Keyword in C++" 
+- [x] "Member Initializer Lists in C++ (Constructor Initializer List)" 
+- [x] "Ternary Operators in C++ (Conditional Assignment)" 
+- [x] "How to CREATE/INSTANTIATE OBJECTS in C++" 
+- [x] "The NEW Keyword in C++" 
+- [x] "Implicit Conversion and the Explicit Keyword in C++" 
+- [x] "OPERATORS and OPERATOR OVERLOADING in C++" 
+- [x] "The &quot;this&quot; keyword in C++" 
+- [x] "Object Lifetime in C++ (Stack/Scope Lifetimes)" 
+- [x] "SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr)" 
+- [x] "Copying and Copy Constructors in C++" 
+- [x] "The Arrow Operator in C++" 
+- [x] "Dynamic Arrays in C++ (std::vector)" 
+- [x] "Optimizing the usage of std::vector in C++" 
+- [x] "Using Libraries in C++ (Static Linking)" 
+- [x] "Using Dynamic Libraries in C++" 
+- [x] "Making and Working with Libraries in C++ (Multiple Projects in Visual Studio)" 
+- [ ] "How to Deal with Multiple Return Values in C++" 
+- [x] "Templates in C++" 
+- [x] "Stack vs Heap Memory in C++" 
+- [x] "Macros in C++" 
+- [x] "The &quot;auto&quot; keyword in C++" 
+- [x] "Static Arrays in C++ (std::array)" 
+- [x] "Function Pointers in C++" 
+- [x] "Lambdas in C++" 
+- [x] "Why I don&#39;t &quot;using namespace std&quot;" 
+- [x] "Namespaces in C++" 
+- [x] "Threads in C++" 
+- [x] "Timing in C++" 
+- [x] "Multidimensional Arrays in C++ (2D arrays)" 
+- [x] "Sorting in C++" 
+- [x] "Type Punning in C++" 
+- [x] "Unions in C++" 
+- [x] "Virtual Destructors in C++" 
+- [x] "Casting in C++" 
+- [x] "Conditional and Action Breakpoints in C++" 
+- [ ] "Safety in modern C++ and how to teach it" 
+- [x] "Precompiled Headers in C++"   
+
+</details> 
+
+
+## Contents  
 - [NewProject](#newproject)
 - [Youtube](#youtube)
     - [Date: 2019-1-10](#2019-1-10)
@@ -86,88 +168,6 @@ It provides a recommended `VS` *Directory Structure* as follows:
 ![](https://i.loli.net/2018/12/17/5c17a606d7d18.png)
 
 ## Youtube  
-Thanks for [Cherno's C++ series](https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb). It actually helps me a lot. This series not only helps me learn how C++ works, but also improves my English level. Cherno speeks so fast, firstly I have to learn it by subtitles, then I try to just listen and Markdown, but I still miss some information. So for some vital stuff, I have to listen it two or three times. As the consequence,  it helps me understand it deeply and improve my poor English.  
-
-I try to use *python crawler* and *Regular expression* to obtain the **course list** as follows:  
-
-<details>
-<summary>course list</summary>  
-
-- [x] "Welcome to C++" 
-- [x] "How to Setup C++ on Windows" 
-- [ ] "How to Setup C++ on Mac" 
-- [ ] "How to Setup C++ on Linux" 
-- [x] "How C++ Works" 
-- [x] "How the C++ Compiler Works" 
-- [x] "How the C++ Linker Works" 
-- [x] "Variables in C++" 
-- [x] "Functions in C++" 
-- [x] "C++ Header Files" 
-- [x] "How to DEBUG C++ in VISUAL STUDIO" 
-- [x] "CONDITIONS and BRANCHES in C++ (if statements)" 
-- [x] "BEST Visual Studio Setup for C++ Projects!" 
-- [x] "Loops in C++ (for loops, while loops)" 
-- [x] "Control Flow in C++ (continue, break, return)" 
-- [x] "POINTERS in C++" 
-- [x] "REFERENCES in C++" 
-- [x] "CLASSES in C++" 
-- [x] "CLASSES vs STRUCTS in C++" 
-- [x] "How to Write a C++ Class" 
-- [x] "Static in C++" 
-- [x] "Static for Classes and Structs in C++" 
-- [x] "Local Static in C++" 
-- [x] "ENUMS in C++" 
-- [x] "Constructors in C++" 
-- [x] "Destructors in C++" 
-- [x] "Inheritance in C++" 
-- [x] "Virtual Functions in C++" 
-- [x] "Interfaces in C++ (Pure Virtual Functions)" 
-- [x] "Visibility in C++" 
-- [x] "Arrays in C++" 
-- [x] "How Strings Work in C++ (and how to use them)" 
-- [x] "String Literals in C++" 
-- [x] "CONST in C++" 
-- [x] "The Mutable Keyword in C++" 
-- [x] "Member Initializer Lists in C++ (Constructor Initializer List)" 
-- [x] "Ternary Operators in C++ (Conditional Assignment)" 
-- [x] "How to CREATE/INSTANTIATE OBJECTS in C++" 
-- [x] "The NEW Keyword in C++" 
-- [x] "Implicit Conversion and the Explicit Keyword in C++" 
-- [x] "OPERATORS and OPERATOR OVERLOADING in C++" 
-- [x] "The &quot;this&quot; keyword in C++" 
-- [x] "Object Lifetime in C++ (Stack/Scope Lifetimes)" 
-- [x] "SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr)" 
-- [x] "Copying and Copy Constructors in C++" 
-- [x] "The Arrow Operator in C++" 
-- [x] "Dynamic Arrays in C++ (std::vector)" 
-- [x] "Optimizing the usage of std::vector in C++" 
-- [x] "Using Libraries in C++ (Static Linking)" 
-- [x] "Using Dynamic Libraries in C++" 
-- [x] "Making and Working with Libraries in C++ (Multiple Projects in Visual Studio)" 
-- [ ] "How to Deal with Multiple Return Values in C++" 
-- [x] "Templates in C++" 
-- [x] "Stack vs Heap Memory in C++" 
-- [x] "Macros in C++" 
-- [x] "The &quot;auto&quot; keyword in C++" 
-- [x] "Static Arrays in C++ (std::array)" 
-- [x] "Function Pointers in C++" 
-- [x] "Lambdas in C++" 
-- [x] "Why I don&#39;t &quot;using namespace std&quot;" 
-- [x] "Namespaces in C++" 
-- [x] "Threads in C++" 
-- [x] "Timing in C++" 
-- [x] "Multidimensional Arrays in C++ (2D arrays)" 
-- [x] "Sorting in C++" 
-- [x] "Type Punning in C++" 
-- [x] "Unions in C++" 
-- [x] "Virtual Destructors in C++" 
-- [x] "Casting in C++" 
-- [x] "Conditional and Action Breakpoints in C++" 
-- [ ] "Safety in modern C++ and how to teach it" 
-- [x] "Precompiled Headers in C++"   
-
-</details> 
-
 ### 2019-1-10  
 #### casting  
 > C style cast and C++ style cast, there are four types of cast in C++, they are: `static cast`, `reinterpret cast`, `dynamic cast` and `const cast`. C style cast can achieve all of those above casts  
