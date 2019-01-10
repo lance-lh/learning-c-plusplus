@@ -3,6 +3,8 @@
 ## Contents
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2019-1-10](#2019-1-10)
+        - [casting](#casting)
     - [Date: 2019-1-9](#2019-1-9)
         - [sorting](#sorting)
         - [type punning](#type-punning)
@@ -153,13 +155,20 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Type Punning in C++" 
 - [x] "Unions in C++" 
 - [x] "Virtual Destructors in C++" 
-- [ ] "Casting in C++" 
+- [x] "Casting in C++" 
 - [ ] "Conditional and Action Breakpoints in C++" 
 - [ ] "Safety in modern C++ and how to teach it" 
 - [ ] "Precompiled Headers in C++"   
 
 </details> 
 
+### 2019-1-10  
+#### casting  
+> C style cast and C++ style cast, there are four types of cast in C++, they are: `static cast`, `reinterpret cast`, `dynamic cast` and `const cast`. C style cast can achieve all of those above casts  
+
+More examples and definitions can be found [here](https://en.cppreference.com/w/cpp/language/explicit_cast).  
+
+***
 ### 2019-1-9  
 #### sorting  
 > `std::sort` defined in header `<algorithm>`. Complexity: `O(N·log(N))`. Here is a specific explanation about [standard sorting](https://en.cppreference.com/w/cpp/algorithm/sort) in C++.   
@@ -470,14 +479,14 @@ int main()
 ​	
 ​	/*using namespace std::literals::chrono_literals;
 ​	
-	auto start = std::chrono::high_resolution_clock::now();
-	std::this_thread::sleep_for(1s);
-	auto end = std::chrono::high_resolution_clock::now();
-	
-	std::chrono::duration<float> duration = end - start;
-	std::cout << duration.count() << std::endl;*/
-	
-	std::cin.get();
+​	auto start = std::chrono::high_resolution_clock::now();
+​	std::this_thread::sleep_for(1s);
+​	auto end = std::chrono::high_resolution_clock::now();
+​	
+​	std::chrono::duration<float> duration = end - start;
+​	std::cout << duration.count() << std::endl;*/
+​	
+​	std::cin.get();
 }
 ```
 
