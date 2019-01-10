@@ -6,6 +6,7 @@
     - [Date: 2019-1-10](#2019-1-10)
         - [casting](#casting)
         - [conditional and actions breakpoints](#conditional-and-actions-breakpoints)
+        - [precompiled headers](#precompiled-headers)
     - [Date: 2019-1-9](#2019-1-9)
         - [sorting](#sorting)
         - [type punning](#type-punning)
@@ -85,6 +86,10 @@ It provides a recommended `VS` *Directory Structure* as follows:
 ![](https://i.loli.net/2018/12/17/5c17a606d7d18.png)
 
 ## Youtube  
+Thanks for [Cherno's C++ series](https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb). It actually helps me a lot. This series not only helps me learn how C++ works, but also improves my English level. Cherno speeks so fast, firstly I have to learn it by subtitles, then I try to just listen and Markdown, but I still miss some information. So for some vital stuff, I have to listen it two or three times. As the consequence,  it helps me understand it deeply and improve my poor English.  
+
+I try to use *python crawler* and *Regular expression* to obtain the **course list** as follows:  
+
 <details>
 <summary>course list</summary>  
 
@@ -159,7 +164,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Casting in C++" 
 - [x] "Conditional and Action Breakpoints in C++" 
 - [ ] "Safety in modern C++ and how to teach it" 
-- [ ] "Precompiled Headers in C++"   
+- [x] "Precompiled Headers in C++"   
 
 </details> 
 
@@ -171,6 +176,23 @@ More examples and definitions can be found [here](https://en.cppreference.com/w/
 
 #### conditional and actions breakpoints  
 **Visual Studio** provides powerful breakpoints to help developers debug their codes. Here is a documentation of how to use [breakpoint](https://docs.microsoft.com/en-us/visualstudio/debugger/using-breakpoints?view=vs-2017) in **Visual Studio**.  
+
+#### precompiled headers  
+precompiled header files, abbreviated as "**PCH**". Image that you are using a buntch of header files, they just perform copy and paste in the main function, but each time we modify our source code, we have to recompile it, thus it costs long time for us to compile header file. So here is the motivation. We can simply precompiled these header files into one binary file, if we are not gonna frequently change them, so the speed will increase a lot. Cases like standard template library, Windows API and so on. 
+
+To achieve all of these, you need some **Visual Studio** settings as follows:  
+
+1. copy not frequently modified header files in one cpp file, eg. `pch.cpp`  
+2. set `pch.cpp` property as ![](https://i.loli.net/2019/01/10/5c3748952c489.png)  
+3. set the whole project property as ![](https://i.loli.net/2019/01/10/5c3748fceb9ad.png)  
+4. click **Tools-> Options** to calculate build timing as  ![](https://i.loli.net/2019/01/10/5c37496a7f40a.png)  
+
+The time difference of using precompiled header file or not can be found in the following table:  
+
+| using PCH | first test | make some changes | second tests |
+| :-------: | :--------: | :---------------: | :----------: |
+|    yes    |   1572ms   |        yes        |    428ms     |
+|    no     |   2326ms   |        yes        |    1136ms    |
 
 ***
 ### 2019-1-9  
