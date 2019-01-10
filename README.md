@@ -5,6 +5,7 @@
 - [Youtube](#youtube)
     - [Date: 2019-1-10](#2019-1-10)
         - [casting](#casting)
+        - [conditional and actions breakpoints](#conditional-and-actions-breakpoints)
     - [Date: 2019-1-9](#2019-1-9)
         - [sorting](#sorting)
         - [type punning](#type-punning)
@@ -156,7 +157,7 @@ It provides a recommended `VS` *Directory Structure* as follows:
 - [x] "Unions in C++" 
 - [x] "Virtual Destructors in C++" 
 - [x] "Casting in C++" 
-- [ ] "Conditional and Action Breakpoints in C++" 
+- [x] "Conditional and Action Breakpoints in C++" 
 - [ ] "Safety in modern C++ and how to teach it" 
 - [ ] "Precompiled Headers in C++"   
 
@@ -167,6 +168,9 @@ It provides a recommended `VS` *Directory Structure* as follows:
 > C style cast and C++ style cast, there are four types of cast in C++, they are: `static cast`, `reinterpret cast`, `dynamic cast` and `const cast`. C style cast can achieve all of those above casts  
 
 More examples and definitions can be found [here](https://en.cppreference.com/w/cpp/language/explicit_cast).  
+
+#### conditional and actions breakpoints  
+**Visual Studio** provides powerful breakpoints to help developers debug their codes. Here is a documentation of how to use [breakpoint](https://docs.microsoft.com/en-us/visualstudio/debugger/using-breakpoints?view=vs-2017) in **Visual Studio**.  
 
 ***
 ### 2019-1-9  
