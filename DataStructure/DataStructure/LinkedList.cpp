@@ -45,7 +45,7 @@ public:
 			std::cout << temp->data << "\t";
 			temp = temp->next;
 		}
-		std::cout << "\n==================================================";
+		std::cout << "\n==================================================\n";
 	}
 	void Insert_start(int value)
 	{
@@ -115,6 +115,24 @@ public:
 		}
 		left->next = cur->next;
 	}
+	void Reverse()
+	{
+		Node* cur = new Node;
+		Node* left = new Node;
+		Node* right = new Node;
+
+		left = NULL;
+		right = NULL;
+		cur = head;
+		while (cur != NULL)
+		{
+			right = cur->next;
+			cur->next = left;
+			left = cur;
+			cur = right;
+		}
+		head = left;
+	}
 
 };
 
@@ -129,28 +147,32 @@ int main()
 	std::cout << "===========create a list==========================\n";
 	ll.Display();
 
-	std::cout << "\n==========Insert at beginning=====================\n";
+	std::cout << "==========Insert at beginning=====================\n";
 	ll.Insert_start(36);
 	ll.Display();
 
-	std::cout << "\n==========Insert at end===========================\n";
+	std::cout << "==========Insert at end===========================\n";
 	ll.Insert_end(73);
 	ll.Display();
 
-	std::cout << "\n==========Insert at 2-th position=================\n";
+	std::cout << "==========Insert at 2-th position=================\n";
 	ll.Insert_position(98, 2);
 	ll.Display();
 
-	std::cout << "\n==========Delete start============================\n";
+	std::cout << "==========Delete start============================\n";
 	ll.Delete_start();
 	ll.Display();
 
-	std::cout << "\n==========Delete end==============================\n";
+	std::cout << "==========Delete end==============================\n";
 	ll.Delete_end();
 	ll.Display();
 
-	std::cout << "\n==========Delete at 2-th position=================\n";
+	std::cout << "==========Delete at 2-th position=================\n";
 	ll.Delete_position(2);
+	ll.Display();
+
+	std::cout << "==========Reverse linked list=====================\n";
+	ll.Reverse();
 	ll.Display();
 
 	std::cin.get();
