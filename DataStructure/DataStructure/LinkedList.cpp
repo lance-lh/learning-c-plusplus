@@ -8,9 +8,10 @@ struct Node
 
 class LinkedList
 {
-private:
-	Node *head, *tail;
+/*private:
+	Node *head, *tail;*/
 public:
+	Node *head, *tail;
 	LinkedList()  // constructor
 	{
 		head = NULL;
@@ -115,7 +116,7 @@ public:
 		}
 		left->next = cur->next;
 	}
-	void Reverse()
+	void IterativeReverse()
 	{
 		Node* cur = new Node;
 		Node* left = new Node;
@@ -133,7 +134,22 @@ public:
 		}
 		head = left;
 	}
-
+	Node* RecursiveReverse(Node* p)
+	{
+		if (p == NULL)
+		{
+			return NULL;
+		}
+		if (p->next == NULL)
+		{
+			head = p;
+			return p;
+		}
+		Node* q = RecursiveReverse(p->next); // Recursive way
+		q->next = p;
+		p->next = NULL;
+		return p;
+	}
 };
 
 int main()
@@ -171,8 +187,12 @@ int main()
 	ll.Delete_position(2);
 	ll.Display();
 
-	std::cout << "==========Reverse linked list=====================\n";
-	ll.Reverse();
+	std::cout << "==========IterativeReverse linked list============\n";
+	ll.IterativeReverse();
+	ll.Display();
+
+	std::cout << "==========RecursiveReverse linked list============\n";
+	ll.RecursiveReverse(ll.head);
 	ll.Display();
 
 	std::cin.get();
