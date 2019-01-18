@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LinkedList.cpp">
+    <ClCompile Include="Array_stack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
