@@ -85,6 +85,8 @@ I try to use *python crawler* and *Regular expression* to obtain the **course li
 ## Contents  
 - [NewProject](#newproject)
 - [Youtube](#youtube)
+    - [Date: 2019-1-19](#2019-1-19)
+        - [Jump statements](#jump-statements)
     - [Date: 2019-1-17](#2019-1-17)
         - [Preprocessor directives](#preprocessor-directives)
         - [lvalue and rvalue](#lvalue-and-rvalue)
@@ -171,6 +173,61 @@ It provides a recommended `VS` *Directory Structure* as follows:
 ![](https://i.loli.net/2018/12/17/5c17a606d7d18.png)
 
 ## Youtube  
+### 2019-1-19  
+#### Jump statements  
+* `break`  
+> Causes the **enclosing for**, **range-for**, **while** or **do-while** loop or **switch** statement to terminate.
+>
+> Used when it is otherwise awkward to terminate the loop using the condition expression and conditional statements.
+>
+> **After this statement the control is transferred to the statement immediately following the enclosing loop or switch.** (break 跳出当前所属loop或者switch的后花括号之后)
+>
+> **A break statement cannot be used to break out of multiple nested loops.**（break一次只能跳出一层循环）
+
+* `continue`
+> Causes the remaining portion of the **enclosing for**, **range-for**, **while** or **do-while** loop body to be skipped.
+> 
+> Used when it is otherwise awkward to ignore the remaining portion of the loop using conditional statements. (遇continue跳到紧邻的下次**循环**条件)
+
+* `return` *with an optional expression*，*using list initialization*
+> Terminates the current **function** and returns the specified value (if any) to its **caller**. (遇到return跳转到函数的后花括号`}`之前，忽视return后续的语句)
+
+Some special cases:
+
+1. If control reaches the end of a function with the return type `void` (possibly cv-qualified), end of a constructor, end of a destructor, or the end of a [function-try-block](https://en.cppreference.com/w/cpp/language/function-try-block) for a function with the return type (possibly cv-qualified) `void` without encountering a return statement, return; is executed.
+
+   (cv-qualified 指的是可被const，volatile关键字修饰)
+
+   (void作为函数返回数据类型，返回值由implicit conversion得到，即`return;`)
+
+2. If control reaches the end of the [main function](https://en.cppreference.com/w/cpp/language/main_function), `return 0`; is executed.
+
+   (入口函数`main`，默认添加`return 0;`的隐式转换)
+
+   Flowing off the end of a value-returning function (except main) without a return statement is undefined behavior. （非void返回类型函数，也非main函数，没有返回值将被视为未定义行为）
+
+3. In a function returning void, the return statement with *expression* can be used, if the expression type is void.
+
+4. Returning by value may involve construction and copy/move of a temporary object, unless [copy elision](https://en.cppreference.com/w/cpp/language/copy_elision) is used. Specifically, the conditions for copy/move can be found [here](https://en.cppreference.com/w/cpp/language/return)
+
+* `goto`
+
+> Transfers control unconditionally. (无条件控制转移)
+>
+> Used when it is otherwise impossible to transfer control to the desired location using other statements.
+
+无条件跳转到label处
+
+
+
+**Reference:**
+
+`std::pair`将两种数据类型组合在一起，比如组合两个数据为一组，或者key-value的形式
+
+* [C++ std::pair的用法](https://www.cnblogs.com/lvchaoshun/p/7769003.html) 
+* [std::pair](https://en.cppreference.com/w/cpp/utility/pair)
+
+***
 ### 2019-1-17  
 #### Preprocessor directives  
 - [Preprocessor directives](http://www.cplusplus.com/doc/tutorial/preprocessor/)  
