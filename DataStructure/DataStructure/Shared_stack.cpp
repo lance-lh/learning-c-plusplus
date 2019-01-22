@@ -4,7 +4,7 @@
 class SharedStack
 {
 public:
-	int a[MAXSIZE] = { 0 };
+	int data[MAXSIZE] = { 0 };  // set all initial values to be zero
 	int top1, top2;
 
 	SharedStack()  // constructor
@@ -13,39 +13,51 @@ public:
 		top2 = MAXSIZE;
 	}
 
-	~SharedStack() {}  // destructor
+	~SharedStack() { ; }  // destructor
 
-	int Push(int value, int stacknum) // first parameter is data to be pushed into stack, second is to consider which stack is to be used
+	void Push(int stacknum, int x) //  first is to consider which stack is to be used, second parameter is data to be pushed into stack
 	{
 		if (top1 + 1 == top2)
 		{
 			std::cout << "The stack is full now!" << std::endl;
-			return false;
+			return;  // zero, false
 		}
 
-		switch (stacknum)
+		// wrong using switch
+		/*switch (stacknum)   
 		{
-		case 1:
-			a[++top1] == value;
-			break;
-		case 2:
-			a[--top2] = value;
-			break;
-		}
-		return true;
+			case 1:
+			{
+				data[++top1] == x;
+				break;
+			}
+
+			case 2:
+			{
+				data[--top2] = x;
+				break;
+			}
+
+		}*/
+
+		if (stacknum == 1)
+			data[++top1] = x;
+		if (stacknum == 2)
+			data[--top2] = x;
 	}
+
 };
 
 int main()
 {
 	SharedStack s;
 
-	s.Push(2, 1);
-	s.Push(5, 1);
 	s.Push(1, 2);
-	s.Push(7, 2);
+	s.Push(1, 5);
+	s.Push(2, 1);
+	s.Push(2, 7);
 
-	for (int i : s.a)
+	for (int i : s.data)
 	{
 		std::cout << i << '\t';
 	}
