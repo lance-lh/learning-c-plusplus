@@ -61,6 +61,7 @@ public:
 int main()
 {
 	SharedStack s;
+	int val;
 
 	s.Push(1, 2);
 	s.Push(1, 5);
