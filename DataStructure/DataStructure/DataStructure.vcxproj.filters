@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LinkStack.cpp">
+    <ClCompile Include="Fib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
