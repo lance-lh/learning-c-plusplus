@@ -173,6 +173,12 @@ It provides a recommended `VS` *Directory Structure* as follows:
 ![](https://i.loli.net/2018/12/17/5c17a606d7d18.png)
 
 ## Youtube  
+#### 2019-1-26  
+Java was designed to be platform independent, while C/C++ was platform dependent.   
+
+![](https://i.loli.net/2019/01/26/5c4bde33deb75.png)
+
+***
 ### 2019-1-19  
 #### Jump statements  
 * `break`  
