@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Fib.cpp">
+    <ClCompile Include="BF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

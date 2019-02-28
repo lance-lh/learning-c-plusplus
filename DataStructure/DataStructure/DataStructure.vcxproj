@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Fib.cpp" />
+    <ClCompile Include="BF.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{748B3066-E32A-4C12-A16C-B6A0C4EA58CD}</ProjectGuid>
