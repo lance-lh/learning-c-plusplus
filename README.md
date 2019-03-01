@@ -178,6 +178,18 @@ Java was designed to be platform independent, while C/C++ was platform dependent
 
 ![](https://i.loli.net/2019/01/26/5c4bde33deb75.png)
 
+**rules for making variables:**  
+
+1. only alphabetic characters, digits and underscore is permitted.
+2. variable name cannot start with digits
+3. uppercase and lowercase characters are distinct
+    that means, `int data` and `int Data` are not the same thing
+4. C++ keywords cannot be variable name
+
+* `signed`, `unsigned`, `long` and `short` are used only before `int` and `char`.
+* `double` for `float`. Also, you can only use `long double`.
+* you cannot write `double float`.
+
 ***
 ### 2019-1-19  
 #### Jump statements  
