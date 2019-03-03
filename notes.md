@@ -387,3 +387,223 @@ int i,j;
 
 ***
 
+**C++ 数组**
+
+definition: 存储相同类型、固定大小、连续内存单元的顺序集合
+
+```c++
+// declaration
+double balance[10];
+
+// initialization
+double balance[5] = {1000.0, 2.0, 3.4, 7.0, 50.0};
+double balance[] = {1000.0, 2.0, 3.4, 7.0, 50.0};
+balance[4] = 50.0;
+
+// access array element
+double salary = balance[9];
+```
+
+**指向数组的指针：**
+
+数组名是一个指向数组中第一个元素的常量指针
+
+```c++
+double *p;
+double balance[10];
+
+p = balance;
+```
+
+> C++ 中，将 **char \*** 或 **char[]** 传递给 **cout** 进行输出，结果会是整个字符串，如果想要获得字符串的地址（第一个字符的内存地址），可使用以下方法：
+>
+> 强制转化为其他指针（非 **char\***）。可以是 **void \*，int \*，float \*， double \*** 等。***** 使用 **&s[0]** 不能输出 **s[0]**（首字符）的地址。因为 **&s[0]** 将返回 **char\***，对于 **char\***（**char** 指针），**cout** 会将其作为字符串来处理，向下查找字符并输出直到字符结束 *****。
+
+```c++
+#include <iostream>
+
+using namespace std;
+const int MAX = 3;
+
+int main()
+{
+	char  var[MAX] = { 'a', 'b', 'c' };
+	char  *ptr;
+
+	// point to the first address of array
+	ptr = var;
+
+	for (int i = 0; i < MAX; i++)
+	{
+
+		cout << "Address of var[" << i << "] = ";
+		cout << (int *)ptr << endl;  // force convert char * to int *
+
+		cout << "Value of var[" << i << "] = ";
+		cout << *ptr << endl;
+
+		// move pointer to the next location
+		ptr++;
+	}
+	cin.get();
+	return 0;
+}
+```
+
+输出：
+
+```c++
+Address of var[0] = 0055F814
+Value of var[0] = a
+Address of var[1] = 0055F815
+Value of var[1] = b
+Address of var[2] = 0055F816
+Value of var[2] = c
+```
+
+**传递数组给函数**
+
+> C++ **传数组给一个函数**，数组类型自动转换为指针类型，因而**传的实际是地址**。
+>
+> 如果您想要在函数中传递一个一维数组作为参数，您必须以下面三种方式来声明函数形式参数，这三种声明方式的结果是一样的，因为每种方式都会告诉编译器将要接收一个整型指针。同样地，您也可以传递一个多维数组作为形式参数
+
+```c++
+// 形参为指针
+void myFunction(int *param) {}
+
+// 形参为定义大小的数组
+void myFunction(int param[10]) {}
+
+// 形参为未定义大小的数组
+void myFunction(int param[]) {}
+```
+
+例子：
+
+```c++
+// pass array parameter to func
+
+#include <iostream>
+using namespace std;
+
+double getAverage(int *arr, int size);
+
+int main(int argc, char const *argv[])
+{
+	int balance[5] = { 1000, 2, 3, 17, 50 };
+	int *pt1 = balance;
+
+	size_t balance_size = sizeof(balance) / sizeof(int);
+	size_t pt1_size = sizeof(pt1);
+
+	double avg;
+
+	cout << "array size : " << balance_size << endl;
+	cout << "pt1_size : " << pt1_size << endl;
+
+	avg = getAverage(balance, 5);
+
+	cout << "Mean value is ：" << avg << endl;
+
+	cin.get();
+	return 0;
+}
+
+double getAverage(int *arr, int size)
+{
+	int i, sum = 0;
+	double avg;
+
+	cout << "Inside getAverage sizeof(arr) = " << sizeof(arr) << endl;
+	for (int i = 0; i < size; ++i)
+	{
+		sum += arr[i];
+	}
+
+	avg = double(sum) / size;
+	return avg;
+}
+```
+
+输出：
+
+```c++
+array size : 5
+pt1_size : 4
+Inside getAverage sizeof(arr) = 4
+Mean value is ：214.4
+```
+
+**从函数返回数组**
+
+示例：
+
+```c++
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+// func to generate and return random numbers
+int * getRandom()
+{
+	static int  r[10];
+
+	// set seed
+	srand((unsigned)time(NULL));
+	for (int i = 0; i < 10; ++i)
+	{
+		r[i] = rand();
+		cout << r[i] << endl;
+	}
+
+	return r;
+}
+
+int main()
+{
+	// prepare a pointer
+	int *p;
+
+	p = getRandom();
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "*(p + " << i << ") : ";
+		cout << *(p + i) << endl;
+	}
+
+	cin.get();
+	return 0;
+}
+```
+
+输出：
+
+```c++
+1318
+28766
+26363
+25223
+31017
+25376
+32405
+14162
+26168
+7906
+*(p + 0) : 1318
+*(p + 1) : 28766
+*(p + 2) : 26363
+*(p + 3) : 25223
+*(p + 4) : 31017
+*(p + 5) : 25376
+*(p + 6) : 32405
+*(p + 7) : 14162
+*(p + 8) : 26168
+*(p + 9) : 7906
+```
+
+**说明：**
+
+1. C++ 不允许返回一个完整的数组作为函数的参数。但是，可以通过**指定不带索引的数组名**来返回一个指向数组的指针。如果想要从函数返回一个一维数组，必须声明一个返回指针的函数`int * getRandom() {}`
+2. C++ 不支持在函数外返回局部变量的地址，除非定义局部变量为 **static** 变量. `static int  r[10];`
