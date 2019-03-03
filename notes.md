@@ -607,3 +607,159 @@ int main()
 
 1. C++ 不允许返回一个完整的数组作为函数的参数。但是，可以通过**指定不带索引的数组名**来返回一个指向数组的指针。如果想要从函数返回一个一维数组，必须声明一个返回指针的函数`int * getRandom() {}`
 2. C++ 不支持在函数外返回局部变量的地址，除非定义局部变量为 **static** 变量. `static int  r[10];`
+
+***
+
+**C++字符串**
+
+- C 风格字符串
+
+- C++ 引入的 string 类类型
+
+  ref : [std::basic_string](https://en.cppreference.com/w/cpp/string/basic_string)
+
+```c++
+// 1. c style string
+char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
+char greeting[] = "Hello";
+
+// C++ 中有大量的函数用来操作以 null 结尾的字符串：supports a wide range of functions that manipulate null-terminated strings:
+strcpy(s1, s2);
+strcat(s1, s2);
+strlen(s1);
+strcmp(s1, s2);
+strchr(s1, ch);
+strstr(s1, s2);
+
+// 2. string 
+#include<string>
+
+std::string s1;
+```
+
+***
+
+**C++指针**
+
+```c++
+// fetch address
+int var;
+std::cout << &var << std::endl;
+
+// pointer declaration
+int    *ip;   
+double *dp;    
+float  *fp;    
+char   *ch;
+
+// e.g.
+// three operations that frequently used for pointer
+// 1. define a pointer
+// 2. fetch variable address and assign it to pointer
+// 3. access the value that stores in pointer variable
+int  var = 20;  
+int  *ip;        
+ 
+ip = &var;       
+ 
+cout << "Value of var variable: ";
+cout << var << endl;
+ 
+cout << "Address stored in ip variable: ";
+cout << ip << endl;
+ 
+cout << "Value of *ip variable: ";
+cout << *ip << endl;
+```
+
+定义指针时，如果暂时没有将指针指向一个变量，可以将指针赋空值，即`int  *ptr = NULL;`， `NULL`表示常量0。
+
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    cout<<"NULL="<<NULL<<endl;
+    return 0;
+}
+```
+
+输出：
+
+```c++
+NULL=0
+```
+
+指针与数组密切相关，
+
+一个指向数组开头的指针，可以通过使用指针的算术运算或数组索引来访问数组
+
+指针与数组并不是完全互换。下面的例子，`*var = i;`这是正确的，因为数组名`var`可以作为头指针`* var`, 但是`var++`相当于`var = var + 1`,实际上将`var`当作一个`lvalue`了，但是`var`此时表示一个常量，不能作为左值使用。
+
+```c++
+   int  var[MAX] = {10, 100, 200};
+ 
+   for (int i = 0; i < MAX; i++)
+   {
+      *var = i;    // right
+      var++;       // wrong
+   }
+```
+
+**指针数组**
+
+```c++
+   int  var[MAX] = {10, 100, 200};
+   int *ptr[MAX]; // pointer to array
+ 
+   for (int i = 0; i < MAX; i++)
+   {
+      ptr[i] = &var[i];  // fetch address and assign it to ptr
+   }
+   for (int i = 0; i < MAX; i++)
+   {
+      cout << "Value of var[" << i << "] = ";
+      cout << *ptr[i] << endl;
+   }
+```
+
+特别地， 用一个**指向字符**的**指针数组**来存储一个**字符串列表**
+
+```c++
+#include <iostream>
+
+using namespace std;
+const int MAX = 4;
+
+int main()
+{
+	const char *names[MAX] = {
+		"Zara Ali",
+		"Hina Ali",
+		"Nuha Ali",
+		"Sara Ali",
+	};
+
+	for (int i = 0; i < MAX; i++)
+	{
+		cout << "Value of names[" << i << "] = ";
+		cout << names[i] << endl;
+	}
+
+	cin.get();
+	return 0;
+}
+
+// 输出：
+Value of names[0] = Zara Ali
+Value of names[1] = Hina Ali
+Value of names[2] = Nuha Ali
+Value of names[3] = Sara Ali
+```
+
+![](https://imgchr.com/i/kLvFsI)
+
+![](https://imgchr.com/i/kLvkLt)
+
+***
+
